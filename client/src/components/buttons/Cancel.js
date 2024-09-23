@@ -3,8 +3,7 @@ import React from 'react';
 function Cancel() {
 	return (
 		<button
-			className="cancelBtn"
-			onClick={props.cancel}>
+			className="cancelBtn">
 			Cancel
 		</button>
 	);
