@@ -43,5 +43,12 @@ module.exports = {
 		} else {
 			res.status(404).end();
 		}
-	}
+	},
+	checkSession: function (req, res) {
+    if (req.session.loggedIn) {
+      res.status(200).json({ session: req.session });
+    } else {
+      res.status(404).send({ message: "No session found." });
+    }
+  },
 };
