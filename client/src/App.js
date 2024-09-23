@@ -4,6 +4,7 @@ import Header from './header/Header';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import SignUp from './pages/signup/SignUp';
+import Setup from './pages/setup/Setup';
 import Account from './pages/account/Account';
 import About from './pages/about/About';
 import Footer from './footer/Footer';
@@ -44,6 +45,11 @@ function App() {
 						exact
 						path="/signup"
 						element={<SignUp />}
+					/>
+					<Route
+						exact
+						path="/setup"
+						element={<Setup />}
 					/>
 					<Route
 						exact
