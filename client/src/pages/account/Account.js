@@ -15,13 +15,40 @@ function Account() {
 	return (
 		<main>
 			<h1>Account Info</h1>
-			<p>First:</p>
-			<p>Last:</p>
-			<p>Email:</p>
-			<p>Services:</p>
-			<EditBtn submit={() => setEdit(!edit)}/>
-			<SaveBtn />
-			<CancelBtn />
+			<div>
+				<h2>Personal Info</h2>
+				<h3>First:</h3>
+				{!edit &&
+					<p>Value</p>
+				}
+				{edit &&
+					<input type="text" placeholder="Value"></input>
+				}
+				<h3>Last:</h3>
+				{!edit &&
+					<p>Value</p>
+				}
+				{edit &&
+					<input type="text" placeholder="Value"></input>
+				}
+				<h3>Email:</h3>
+				{!edit &&
+					<p>Value</p>
+				}
+				{edit &&
+					<input type="text" placeholder="Value"></input>
+				}
+			</div>
+			<h3>Services:</h3>
+			{!edit &&
+				<EditBtn submit={() => setEdit(true)}/>
+			}
+			{edit &&
+			<div>
+				<SaveBtn submit={() => setEdit(false)}/>
+				<CancelBtn submit={() => setEdit(false)}/>
+			</div>
+			}
 		</main>
 	);
 }

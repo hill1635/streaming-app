@@ -1,9 +1,11 @@
 import React from 'react';
 
-function Cancel() {
+function Cancel(props) {
 	return (
 		<button
-			className="cancelBtn">
+			className="cancelBtn"
+			onClick={props.submit}
+		>
 			Cancel
 		</button>
 	);
