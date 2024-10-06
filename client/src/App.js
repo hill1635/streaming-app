@@ -17,14 +17,14 @@ function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
 	const [user, setUser] = useState({});
 
-	useEffect(() => {
-		API.checkSession().then((res) => {
-			if (res.data[0] !== undefined) {
-				setUser(res.data[0]);
-				setLoggedIn(true);
-			}
-		});
-	}, []);
+	// useEffect(() => {
+	// 	API.checkSession().then((res) => {
+	// 		if (res.data[0] !== undefined) {
+	// 			setUser(res.data[0]);
+	// 			setLoggedIn(true);
+	// 		}
+	// 	});
+	// }, []);
 
 	return (
 		<Router>

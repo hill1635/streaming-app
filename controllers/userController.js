@@ -2,20 +2,30 @@ const db = require('../models/user');
 const bcrypt = require('bcrypt');
 
 module.exports = {
-	create: function (req, res) {
-		req.body.password = bcrypt.hashSync(req.body.password, 10);
-		db
-			.create(req.body)
-			.then((dbModel) => res.json(dbModel))
-			.catch((err) => res.status(422).json(err));
-	},
-	remove: function (req, res) {
-		db
-			.findById({ _id: req.session.userId }, req.body)
-			.then((dbModel) => dbModel.remove())
-			.then((dbModel) => res.json(dbModel))
-			.catch((err) => res.status(422).json(err));
-	},
+  create: function (req, res) {
+    try {
+        req.body.password = bcrypt.hashSync(req.body.password, 10);
+        console.log('req.body:', req.body);
+        db.create(req.body)
+            .then((dbModel) => res.json(dbModel))
+            .catch((err) => {
+                console.error('Error creating user:', err); // Log the error details
+                res.status(422).json({ error: err.message || err });
+            });
+    } catch (err) {
+        console.error('Unexpected error:', err); // Log unexpected errors
+        res.status(500).json({ error: 'Internal server error' });
+    }
+  },
+  remove: function (req, res) {
+      db.findById({ _id: req.session.userId })
+          .then((dbModel) => dbModel.remove())
+          .then((dbModel) => res.json(dbModel))
+          .catch((err) => {
+              console.error('Error removing user:', err); // Log the error details
+              res.status(422).json({ error: err.message || err });
+          });
+  },
 	login: function (req, res) {
 		db
 			.find({ email: req.body.email })

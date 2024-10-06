@@ -12,7 +12,8 @@
 		"build": "cd client && npm run build",
 		"heroku-postbuild": "npm run build",
 		"check-format": "npx prettier . -c --config config/.prettierrc.yaml",
-		"fix-format": "npx prettier . --write --config config/.prettierrc.yaml"
+		"fix-format": "npx prettier . --write --config config/.prettierrc.yaml",
+		"mongodb": "mongod --dbpath ~/mongodb/data"
 	},
 	"repository": {
 		"type": "git",
