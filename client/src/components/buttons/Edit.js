@@ -4,7 +4,7 @@ function Edit(props) {
 	return (
 		<button
 			className="editBtn"
-			onClick={props.edit}>
+			onClick={props.submit}>
 			Edit
 		</button>
 	);
