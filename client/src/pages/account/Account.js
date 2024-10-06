@@ -7,6 +7,7 @@ import StreamAPI from '../../utils/StreamAPI';
 
 function Account() {
 	const [ edit, setEdit ] = useState(false);
+	const [ user, setUser ] = useState({first: "", last: "", email: ""});
 
 	useEffect(() => {
 		console.log("edit:", edit);
@@ -19,24 +20,24 @@ function Account() {
 				<h2>Personal Info</h2>
 				<h3>First:</h3>
 				{!edit &&
-					<p>Value</p>
+					<p>{user.first}</p>
 				}
 				{edit &&
-					<input type="text" placeholder="Value"></input>
+					<input type="text" placeholder={user.first}></input>
 				}
 				<h3>Last:</h3>
 				{!edit &&
-					<p>Value</p>
+					<p>{user.last}</p>
 				}
 				{edit &&
-					<input type="text" placeholder="Value"></input>
+					<input type="text" placeholder={user.last}></input>
 				}
 				<h3>Email:</h3>
 				{!edit &&
-					<p>Value</p>
+					<p>{user.email}</p>
 				}
 				{edit &&
-					<input type="text" placeholder="Value"></input>
+					<input type="text" placeholder={user.email}></input>
 				}
 			</div>
 			<h3>Services:</h3>
