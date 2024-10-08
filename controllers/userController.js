@@ -2,6 +2,24 @@ const db = require('../models/user');
 const bcrypt = require('bcrypt');
 
 module.exports = {
+  get: function (req, res) {
+    console.log("req.session.userId:", req.session.userId);
+    if (!req.session.userId) {
+      return res.status(400).json({ error: 'User ID not found in session' });
+    }
+  
+    db.findById({ _id: req.session.userId })
+      .then((dbModel) => {
+        if (!dbModel) {
+          return res.status(404).json({ error: 'User not found' });
+        }
+        res.json(dbModel);
+      })
+      .catch((err) => {
+        console.error('Error getting user:', err);
+        res.status(500).json({ error: 'An error occurred while retrieving the user' });
+      });
+  },
   create: function (req, res) {
     try {
         req.body.password = bcrypt.hashSync(req.body.password, 10);
