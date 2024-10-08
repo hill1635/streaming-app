@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import EditBtn from '../../components/buttons/Edit';
 import SaveBtn from '../../components/buttons/Save';
 import CancelBtn from '../../components/buttons/Cancel';
+import UserAPI from '../../utils/UserAPI';
 import StreamAPI from '../../utils/StreamAPI';
 import './Account.scss';
 
@@ -13,8 +14,15 @@ function Account(props) {
 	const [ genres, setGenres ] = useState([]);
 	const [ services, setServices ] = useState([]);
 
+	const getUserData = () => {
+		UserAPI.get().then((res) => {
+			setUser(res.data);
+		});
+	};
+
 	useEffect(() => {
-		if (props.user) {
+		if (props.user !== undefined) {
+			getUserData(props.user);
 			StreamAPI.getSources().then((res) => {
 				var filteredSources = res.data.filter((source) => source.regions.includes("US")).slice(0, 10);
 				setServices(filteredSources);
