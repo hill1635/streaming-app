@@ -85,7 +85,7 @@ function Account() {
 				services.map((service) => {
 				return (
 					<div className="serviceProvider" key={service.id}>
-						<input type="checkbox" onChange={(e) => selectService(e.target.checked, service.id)}/>
+						<input type="checkbox" onChange={(e) => selectService(e.target.checked, service)}/>
 						<img src={service.logo_100px} alt={service.name} />
 						<h4>{service.name}</h4>
 					</div>
@@ -105,7 +105,7 @@ function Account() {
 				genres.map((genre) => {
 				return (
 					<div key={genre.id}>
-						<input type="checkbox" onChange={(e) => selectGenre(e.target.checked, genre.id)}/>
+						<input type="checkbox" onChange={(e) => selectGenre(e.target.checked, genre)}/>
 						<h4>{genre.name}</h4>
 					</div>
 				);
