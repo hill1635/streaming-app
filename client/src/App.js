@@ -15,12 +15,12 @@ import './components/buttons/Buttons.scss';
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
-	const [user, setUser] = useState({});
+	const [userId, setUserId] = useState("");
 
 	useEffect(() => {
 		API.checkSession().then((res) => {
-			if (res.data[0] !== undefined) {
-				setUser(res.data[0]);
+			if (res.data.session !== undefined) {
+				setUserId(res.data.session.userId);
 				setLoggedIn(true);
 			}
 		});
@@ -34,12 +34,12 @@ function App() {
 					<Route
 						exact
 						path="/"
-						element={<Home user={user} />}
+						element={<Home user={userId} />}
 					/>
 					<Route
 						exact
 						path="/login"
-						element={<Login setUser={setUser}/>}
+						element={<Login setUser={setUserId}/>}
 					/>
 					<Route
 						exact
@@ -54,7 +54,7 @@ function App() {
 					<Route
 						exact
 						path="/account"
-						element={<Account user={user}/>}
+						element={<Account user={userId}/>}
 					/>
 					<Route
 						exact
