@@ -14,10 +14,6 @@ function Account() {
 	const [ services, setServices ] = useState([]);
 
 	useEffect(() => {
-		console.log("userDraft:", userDraft);
-	}, [userDraft]);
-
-	useEffect(() => {
 		StreamAPI.getSources().then((res) => {
 			var filteredSources = res.data.filter((source) => source.regions.includes("US")).slice(0, 10);
 			setServices(filteredSources);
