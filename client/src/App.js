@@ -39,7 +39,7 @@ function App() {
 					<Route
 						exact
 						path="/login"
-						element={<Login />}
+						element={<Login setUser={setUser}/>}
 					/>
 					<Route
 						exact
