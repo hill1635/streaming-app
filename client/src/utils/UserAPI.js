@@ -1,6 +1,9 @@
 import axios from 'axios';
 
 export default {
+	get: function (id) {
+		return axios.get('/api/users/' + id);
+	},
 	create: function (userData) {
 		return axios.post('/api/users/', userData);
 	},
