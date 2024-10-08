@@ -20,7 +20,6 @@ function App() {
 	useEffect(() => {
 		API.checkSession().then((res) => {
 			if (res.data[0] !== undefined) {
-				console.log("res.data:", res.data[0]);
 				setUser(res.data[0]);
 				setLoggedIn(true);
 			}
