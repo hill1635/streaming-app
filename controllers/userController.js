@@ -40,7 +40,7 @@ module.exports = {
 				req.session.save(() => {
 					req.session.loggedIn = true;
 					req.session.userId = dbModel[0]._id;
-					res.status(200).json({ user: req.body.email });
+					res.status(200).json({ user: req.body.email, id: dbModel[0]._id });
 				});
 			})
 			.catch((err) => res.status(500).json(err));
