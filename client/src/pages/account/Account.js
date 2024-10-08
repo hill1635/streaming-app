@@ -8,7 +8,7 @@ import './Account.scss';
 
 function Account() {
 	const [ edit, setEdit ] = useState(false);
-	const [ user, setUser ] = useState({first: "", last: "", email: "", services: [], genres: []});
+	const [ user, setUser ] = useState({display: "", email: "", services: [], genres: []});
 	const [ userDraft, setUserDraft ] = useState(user);
 	const [ genres, setGenres ] = useState([]);
 	const [ services, setServices ] = useState([]);
@@ -58,19 +58,12 @@ function Account() {
 			<h1>Account Info</h1>
 			<div>
 				<h2>Personal Info</h2>
-				<h3>First:</h3>
+				<h3>Display Name:</h3>
 				{!edit &&
-					<p>{user.first}</p>
+					<p>{user.display}</p>
 				}
 				{edit &&
-					<input type="text" value={userDraft.first} onChange={(e) => setUserDraft({...userDraft, first: e.target.value})}></input>
-				}
-				<h3>Last:</h3>
-				{!edit &&
-					<p>{user.last}</p>
-				}
-				{edit &&
-					<input type="text" value={userDraft.last} onChange={(e) => setUserDraft({...userDraft, last: e.target.value})}></input>
+					<input type="text" value={userDraft.display} onChange={(e) => setUserDraft({...userDraft, first: e.target.value})}></input>
 				}
 				<h3>Email:</h3>
 				{!edit &&
