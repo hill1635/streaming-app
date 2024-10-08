@@ -15,7 +15,7 @@ import './components/buttons/Buttons.scss';
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
-	const [user, setUser] = useState({});
+	const [user, setUser] = useState("");
 
 	useEffect(() => {
 		API.checkSession().then((res) => {
