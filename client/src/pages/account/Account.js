@@ -6,7 +6,7 @@ import CancelBtn from '../../components/buttons/Cancel';
 import StreamAPI from '../../utils/StreamAPI';
 import './Account.scss';
 
-function Account() {
+function Account(props) {
 	const [ edit, setEdit ] = useState(false);
 	const [ user, setUser ] = useState({display: "", email: "", services: [], genres: []});
 	const [ userDraft, setUserDraft ] = useState(user);
@@ -14,14 +14,18 @@ function Account() {
 	const [ services, setServices ] = useState([]);
 
 	useEffect(() => {
-		StreamAPI.getSources().then((res) => {
-			var filteredSources = res.data.filter((source) => source.regions.includes("US")).slice(0, 10);
-			setServices(filteredSources);
-		});
+		if (props.user) {
+			StreamAPI.getSources().then((res) => {
+				var filteredSources = res.data.filter((source) => source.regions.includes("US")).slice(0, 10);
+				setServices(filteredSources);
+			});
 
-		StreamAPI.getGenres().then((res) => {
-			setGenres(res.data);
-		});
+			StreamAPI.getGenres().then((res) => {
+				setGenres(res.data);
+			});
+		} else {
+			window.location.href = '/login';
+		}
 	}, []); 
 
 	const saveAccount = () => {
