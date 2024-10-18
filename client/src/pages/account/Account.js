@@ -20,9 +20,16 @@ function Account(props) {
 		});
 	};
 
+	const updateUser = (userData) => {
+		UserAPI.update(userData).then((res) => {
+			setUser(userData);
+			setEdit(false);
+		});
+	};
+
 	useEffect(() => {
-		if (props.user !== undefined) {
-			getUserData(props.user);
+		console.log("props.user: ", props.user);
+		if (props.user._id !== undefined) {
 			StreamAPI.getSources().then((res) => {
 				var filteredSources = res.data.filter((source) => source.regions.includes("US")).slice(0, 10);
 				setServices(filteredSources);
@@ -35,11 +42,6 @@ function Account(props) {
 			window.location.href = '/login';
 		}
 	}, []); 
-
-	const saveAccount = () => {
-		setUser(userDraft);
-		setEdit(false);
-	};
 
 	const selectGenre = (selected, genre) => {
 		if (selected) {
@@ -124,7 +126,7 @@ function Account(props) {
 			}
 			{edit &&
 			<div>
-				<SaveBtn submit={() => saveAccount()}/>
+				<SaveBtn submit={() => updateUser(userDraft)}/>
 				<CancelBtn submit={() => setEdit(false)}/>
 			</div>
 			}

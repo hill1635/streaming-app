@@ -4,7 +4,7 @@ import './Home.scss';
 
 function Home(props) {
 	useEffect(() => {
-		console.log('user: ', props.user);
+		console.log('user: ', props);
 	}, [props.user]);
 
 	return (

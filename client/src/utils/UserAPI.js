@@ -7,6 +7,9 @@ export default {
 	create: function (userData) {
 		return axios.post('/api/users/', userData);
 	},
+	update: function (id, userData) {
+		return axios.put('/api/users/' + id, userData);
+	},
 	delete: function (id) {
 		return axios.delete('/api/users/' + id);
 	},

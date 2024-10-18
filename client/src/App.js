@@ -15,12 +15,12 @@ import './components/buttons/Buttons.scss';
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
-	const [user, setUser] = useState("");
+	const [user, setUser] = useState({});
 
 	useEffect(() => {
 		API.checkSession().then((res) => {
-			if (res.data.session !== undefined) {
-				setUser(res.data.session.userId);
+			if (res.data !== undefined) {
+				setUser(res.data);
 				setLoggedIn(true);
 			}
 		});

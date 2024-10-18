@@ -5,14 +5,11 @@ module.exports = {
   get: function (req, res) {
     console.log("req.session.userId:", req.session.userId);
     if (!req.session.userId) {
-      return res.status(400).json({ error: 'User ID not found in session' });
+      return;
     }
   
     db.findById({ _id: req.session.userId })
       .then((dbModel) => {
-        if (!dbModel) {
-          return res.status(404).json({ error: 'User not found' });
-        }
         res.json(dbModel);
       })
       .catch((err) => {
@@ -34,6 +31,16 @@ module.exports = {
         console.error('Unexpected error:', err); // Log unexpected errors
         res.status(500).json({ error: 'Internal server error' });
     }
+  },
+  update: function (req, res) {
+    console.log("req.session.userId:", req.session);
+    db.findByIdAndUpdate({ _id: req.session.userId }, req.body)
+      .then((dbModel) => res.json(dbModel))
+      .then((dbModel) => console.log('User updated:', dbModel))
+      .catch((err) => {
+        console.error('Error updating user:', err);
+        res.status(422).json({ error: err.message || err });
+      });
   },
   remove: function (req, res) {
       db.findById({ _id: req.session.userId })
