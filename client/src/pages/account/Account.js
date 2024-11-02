@@ -31,6 +31,24 @@ function Account(props) {
 
 		setUserDraft(user);
   }, []);
+
+	const addOption = (option, array, callback) => {
+		const newArray = [...array, option];
+		callback(newArray);
+	};
+
+	const removeOption = (option, array, callback) => {
+		const newArray = array.filter((index) => index !== option);
+		callback(newArray);
+	};
+
+	const toggleOption = (e, option, array, callback) => {
+		if (e.target.checked) {
+			addOption(option, array, callback);
+		} else {
+			removeOption(option, array, callback);
+		}
+	};
 	
 	return (
 		<main>
@@ -52,7 +70,7 @@ function Account(props) {
 				servicesRef.current.map((service) => {
 				return (
 					<div className="serviceProvider" key={service.id}>
-						<input type="checkbox" checked={services.includes(service)}/>
+						<input type="checkbox" checked={services.includes(service)} onChange={(e) => toggleOption(e, service, services, setServices)} />
 						<img src={service.logo_100px} alt={service.name} />
 						<h4>{service.name}</h4>
 					</div>
@@ -72,7 +90,7 @@ function Account(props) {
 				genresRef.current.map((genre) => {
 				return (
 					<div key={genre.id}>
-						<input type="checkbox" checked={genres.includes(genre)}/>
+						<input type="checkbox" checked={genres.includes(genre)} onChange={(e) => toggleOption(e, genre, genres, setGenres)}/>
 						<h4>{genre.name}</h4>
 					</div>
 				);
