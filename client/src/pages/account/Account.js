@@ -3,11 +3,10 @@ import { UserContext } from '../../UserContext';
 import EditBtn from '../../components/buttons/Edit';
 import SaveBtn from '../../components/buttons/Save';
 import CancelBtn from '../../components/buttons/Cancel';
-import UserAPI from '../../utils/UserAPI';
 import StreamAPI from '../../utils/StreamAPI';
 import './Account.scss';
 
-function Account(props) {
+function Account() {
 	const [ edit, setEdit ] = useState(false);
 	const { user, setUser } = useContext(UserContext);
 	const [ userDraft, setUserDraft ] = useState({...user});
@@ -16,7 +15,6 @@ function Account(props) {
 
   useEffect(() => {
     StreamAPI.getSources().then((res) => {
-			console.log("Fetching sources");
 			console.log("sources:", res.data);
       servicesRef.current = res.data;
     });
@@ -29,7 +27,7 @@ function Account(props) {
   }, []);
 
 	useEffect(() => {
-		setUserDraft(user);
+		setUserDraft({...user});
 	}, [user]);
 
 	const addOption = (option, property) => {
@@ -77,7 +75,7 @@ function Account(props) {
 				servicesRef.current.map((service) => {
 				return (
 					<div className="serviceProvider" key={service.id}>
-						<input type="checkbox" onChange={(e) => toggleOption(e, service, "services")} />
+						<input type="checkbox" checked={user.services.includes(service)} onChange={(e) => toggleOption(e, service, "services")} />
 						<img src={service.logo_100px} alt={service.name} />
 						<h4>{service.name}</h4>
 					</div>
@@ -97,7 +95,7 @@ function Account(props) {
 				genresRef.current.map((genre) => {
 				return (
 					<div key={genre.id}>
-						<input type="checkbox" checked={userDraft.genres.includes(genre)} onChange={(e) => toggleOption(e, genre, "genres")}/>
+						<input type="checkbox" checked={user.genres.includes(genre)} onChange={(e) => toggleOption(e, genre, "genres")}/>
 						<h4>{genre.name}</h4>
 					</div>
 				);
