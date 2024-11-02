@@ -1,5 +1,5 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { UserContext } from '../../UserContext';
 import EditBtn from '../../components/buttons/Edit';
 import SaveBtn from '../../components/buttons/Save';
 import CancelBtn from '../../components/buttons/Cancel';
@@ -9,59 +9,19 @@ import './Account.scss';
 
 function Account(props) {
 	const [ edit, setEdit ] = useState(false);
-	const [ user, setUser ] = useState({display: "", email: "", services: [], genres: []});
+	const { user, setUser } = useContext(UserContext);
 	const [ userDraft, setUserDraft ] = useState(user);
 	const [ genres, setGenres ] = useState([]);
 	const [ services, setServices ] = useState([]);
 
-	const getUserData = () => {
-		UserAPI.get().then((res) => {
-			setUser(res.data);
-		});
-	};
+			// StreamAPI.getSources().then((res) => {
+			// 	var filteredSources = res.data.filter((source) => source.regions.includes("US")).slice(0, 10);
+			// 	setServices(filteredSources);
+			// });
 
-	const updateUser = (userData) => {
-		UserAPI.update(userData).then((res) => {
-			setUser(userData);
-			setEdit(false);
-		});
-	};
-
-	useEffect(() => {
-		console.log("props.user: ", props.user);
-		if (props.user._id !== undefined) {
-			StreamAPI.getSources().then((res) => {
-				var filteredSources = res.data.filter((source) => source.regions.includes("US")).slice(0, 10);
-				setServices(filteredSources);
-			});
-
-			StreamAPI.getGenres().then((res) => {
-				setGenres(res.data);
-			});
-		} else {
-			window.location.href = '/login';
-		}
-	}, []); 
-
-	const selectGenre = (selected, genre) => {
-		if (selected) {
-			setUserDraft({...userDraft, genres: [...userDraft.genres, genre]});
-		} else {
-			var index = userDraft.genres.indexOf(genre);
-			var newArray = userDraft.genres.splice(index, 1);
-			setUserDraft({...userDraft, genres: newArray});
-		}
-	};
-
-	const selectService = (selected, service) => {
-		if (selected) {
-			setUserDraft({...userDraft, services: [...userDraft.services, service]});
-		} else {
-			var index = userDraft.genres.indexOf(service);
-			var newArray = userDraft.services.splice(index, 1);
-			setUserDraft({...userDraft, services: newArray});
-		}
-	};
+			// StreamAPI.getGenres().then((res) => {
+			// 	setGenres(res.data);
+			// });
 	
 	return (
 		<main>
@@ -76,12 +36,7 @@ function Account(props) {
 					<input type="text" value={userDraft.display} onChange={(e) => setUserDraft({...userDraft, first: e.target.value})}></input>
 				}
 				<h3>Email:</h3>
-				{!edit &&
 					<p>{user.email}</p>
-				}
-				{edit &&
-					<input type="text" value={userDraft.email} onChange={(e) => setUserDraft({...userDraft, email: e.target.value})}></input>
-				}
 			</div>
 			<h3>Services:</h3>
 			{edit &&
