@@ -79,9 +79,4 @@ module.exports = {
 			res.status(404).end();
 		}
 	},
-	checkSession: function (req, res) {
-    if (req.session.loggedIn) {
-      res.status(200).json({ session: req.session });
-    }
-  },
 };
