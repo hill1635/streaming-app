@@ -10,11 +10,9 @@ import './Account.scss';
 function Account(props) {
 	const [ edit, setEdit ] = useState(false);
 	const { user, setUser } = useContext(UserContext);
-	const [ userDraft, setUserDraft ] = useState(user);
+	const [ userDraft, setUserDraft ] = useState({...user});
 	const servicesRef = useRef([]);
-	const [ services, setServices ] = useState([]);
 	const genresRef = useRef([]);
-	const [ genres, setGenres ] = useState([]);
 
   useEffect(() => {
     StreamAPI.getSources().then((res) => {
@@ -28,25 +26,29 @@ function Account(props) {
 			console.log("genres:", res.data);
       genresRef.current = res.data;
     });
-
-		setUserDraft(user);
   }, []);
 
-	const addOption = (option, array, callback) => {
-		const newArray = [...array, option];
-		callback(newArray);
+	useEffect(() => {
+		setUserDraft(user);
+	}, [user]);
+	
+	const addOption = (option, property) => {
+		var newUserDraft = userDraft;
+		newUserDraft[property].push(option);
+		setUserDraft({...newUserDraft});
 	};
 
-	const removeOption = (option, array, callback) => {
-		const newArray = array.filter((index) => index !== option);
-		callback(newArray);
+	const removeOption = (option, property) => {
+		var newUserDraft = userDraft;
+		newUserDraft[property] = newUserDraft[property].filter((index) => index !== option);
+		setUserDraft({...newUserDraft});
 	};
 
-	const toggleOption = (e, option, array, callback) => {
+	const toggleOption = (e, option, property) => {
 		if (e.target.checked) {
-			addOption(option, array, callback);
+			addOption(option, property);
 		} else {
-			removeOption(option, array, callback);
+			removeOption(option, property);
 		}
 	};
 	
@@ -70,13 +72,13 @@ function Account(props) {
 				servicesRef.current.map((service) => {
 				return (
 					<div className="serviceProvider" key={service.id}>
-						<input type="checkbox" checked={services.includes(service)} onChange={(e) => toggleOption(e, service, services, setServices)} />
+						<input type="checkbox" onChange={(e) => toggleOption(e, service, "services")} />
 						<img src={service.logo_100px} alt={service.name} />
 						<h4>{service.name}</h4>
 					</div>
 				);
 			})}
-			{!edit && services.length > 0 && 
+			{!edit && userDraft.services.length > 0 && 
 				user.services.map((service) => {
 				return (
 					<div className="service" key={service.id}>
@@ -90,12 +92,12 @@ function Account(props) {
 				genresRef.current.map((genre) => {
 				return (
 					<div key={genre.id}>
-						<input type="checkbox" checked={genres.includes(genre)} onChange={(e) => toggleOption(e, genre, genres, setGenres)}/>
+						<input type="checkbox" checked={userDraft.genres.includes(genre)} onChange={(e) => toggleOption(e, genre, "genres")}/>
 						<h4>{genre.name}</h4>
 					</div>
 				);
 			})}
-			{!edit && genres.length > 0 &&
+			{!edit && userDraft.genres.length > 0 &&
 				user.genres.map((genre) => {
 				return (
 					<div key={genre.id}>
