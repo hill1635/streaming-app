@@ -18,14 +18,12 @@ const UserSchema = new Schema({
 		type: String,
 		trim: true,
 	},
-	services: {
-		type: Array,
-		default: []
-	},
-	genres: {
-		type: Array,
-		default: []
-	},
+  services: {
+    type: String
+  },
+  genres: {
+    type: String
+  },
 	userCreated: {
 		type: Date,
 		default: Date.now
