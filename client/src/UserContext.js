@@ -1,15 +1,19 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useRef } from 'react';
 import UserAPI from './utils/UserAPI';
+
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+  const userRef = useRef({});
   const [user, setUser] = useState({
     email: "",
     displayName: "",
     services: [],
     genres: [],
   });
-  
+
+  const init = useRef(false);
+
   useEffect(() => {
     UserAPI.get()
       .then((res) => {
@@ -25,6 +29,17 @@ export const UserProvider = ({ children }) => {
         console.error("Error fetching user data:", err);
       });
   }, []);
+
+  useEffect(() => {
+    if (!init.current && user.email !== "") {
+      userRef.current = user;
+      init.current = true;
+    }
+    
+    if (init.current && user !== userRef.current) {
+      console.log("newUser:", user);
+    }
+  }, [user]);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
