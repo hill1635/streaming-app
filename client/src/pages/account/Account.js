@@ -31,7 +31,7 @@ function Account(props) {
 	useEffect(() => {
 		setUserDraft(user);
 	}, [user]);
-	
+
 	const addOption = (option, property) => {
 		var newUserDraft = userDraft;
 		newUserDraft[property].push(option);
@@ -50,6 +50,11 @@ function Account(props) {
 		} else {
 			removeOption(option, property);
 		}
+	};
+
+	const saveUser = (data) => {
+		setUser({...data});
+		setEdit(false);
 	};
 	
 	return (
@@ -110,7 +115,7 @@ function Account(props) {
 			}
 			{edit &&
 			<div>
-				<SaveBtn submit={() => console.log("save")}/>
+				<SaveBtn submit={() => saveUser(userDraft)}/>
 				<CancelBtn submit={() => setEdit(false)}/>
 			</div>
 			}
