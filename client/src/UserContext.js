@@ -16,6 +16,7 @@ export const UserProvider = ({ children }) => {
   const getUser = () => {
     UserAPI.get()
     .then((res) => {
+      console.log("res:", res);
       const userObject = {
         id: res.data?._id || "",
         email: res.data?.email || "",
@@ -23,7 +24,7 @@ export const UserProvider = ({ children }) => {
         services: res.data?.services ? JSON.parse(res.data.services) : [],
         genres: res.data?.genres ? JSON.parse(res.data.genres) : [],
       };
-      setUser(userObject);
+      setUser({...userObject});
     })
     .catch((err) => {
       console.error("Error fetching user data:", err);
@@ -42,6 +43,7 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    console.log("user:", user);
     if (!init.current && user.email !== "") {
       userRef.current = user;
       init.current = true;

@@ -7,7 +7,10 @@ function SignUp() {
 	var createAccount = () => {
 		API.create({
 			email: document.querySelector('#userInput').value,
-			password: document.querySelector('#passwordInput').value
+			password: document.querySelector('#passwordInput').value,
+			displayName: "",
+			services: "",
+			genres: ""
 		}).then(() => (window.location.href = '/login'));
 	};
 

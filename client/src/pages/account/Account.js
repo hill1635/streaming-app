@@ -55,6 +55,7 @@ function Account() {
 		setEdit(false);
 	};
 	
+	// TODO: Checked variable not working
 	return (
 		<main>
 			<h1>Account Info</h1>
@@ -75,7 +76,7 @@ function Account() {
 				servicesRef.current.map((service) => {
 				return (
 					<div className="serviceProvider" key={service.id}>
-						<input type="checkbox" checked={user.services.includes(service)} onChange={(e) => toggleOption(e, service, "services")} />
+						<input type="checkbox" checked={userDraft.services.includes(service)} onChange={(e) => toggleOption(e, service, "services")} />
 						<img src={service.logo_100px} alt={service.name} />
 						<h4>{service.name}</h4>
 					</div>
@@ -95,7 +96,7 @@ function Account() {
 				genresRef.current.map((genre) => {
 				return (
 					<div key={genre.id}>
-						<input type="checkbox" checked={user.genres.includes(genre)} onChange={(e) => toggleOption(e, genre, "genres")}/>
+						<input type="checkbox" checked={userDraft.genres.includes(genre)} onChange={(e) => toggleOption(e, genre, "genres")}/>
 						<h4>{genre.name}</h4>
 					</div>
 				);

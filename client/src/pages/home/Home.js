@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
-import API from '../../utils/UserAPI';
+import React, { useContext } from 'react';
+import { UserContext } from '../../UserContext';
 import './Home.scss';
 
-function Home(props) {
-	useEffect(() => {
-		console.log('user: ', props);
-	}, [props.user]);
+function Home() {
+	const { user } = useContext(UserContext);
 
 	return (
 		<main>
