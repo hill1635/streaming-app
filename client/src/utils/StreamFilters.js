@@ -1,79 +1,100 @@
 export const streamFilters = [
   {
-    name: "types",
-    label: "Types",
+    key: "types",
+    name: "Types",
     type: "multi_select",
-    values: ["movie", "tv_series", "tv_special", "tv_miniseries", "short_film"]
+    values: [
+      { key: "movie", name: "Movie" },
+      { key: "tv_series", name: "Tv Series" },
+      { key: "tv_special", name: "Tv Special" },
+      { key: "tv_miniseries", name: "Tv Miniseries" },
+      { key: "short_film", name: "Short Film" }
+    ]
   },
   {
-    name: "source_types",
-    label: "Source Types",
+    key: "source_types",
+    name: "Source Types",
     type: "multi_select",
-    values: ["sub", "rent", "buy", "free", "tve"]
+    values: [
+      { key: "sub", name: "Subcription" },
+      { key: "rent", name: "Rent" },
+      { key: "buy", name: "Buy" },
+      { key: "free", name: "Free" },
+      { key: "tve", name: "Tve" }
+    ]
   },
   {
-    name: "source_ids",
-    label: "Sources",
+    key: "source_ids",
+    name: "Sources",
     type: "multi_select",
     values: []
   },
   {
-    name: "genres",
-    label: "Genres",
+    key: "genres",
+    name: "Genres",
     type: "multi_select",
     values: []
   },
   {
-    name: "network_ids",
-    label: "Networks",
+    key: "network_ids",
+    name: "Networks",
     type: "multi_select",
     values: []
   },
   {
-    name: "sort_by",
-    label: "Sort By",
+    key: "sort_by",
+    name: "Sort By",
     type: "select",
-    values: ["relevance_desc", "relevance_asc", "popularity_desc", "popularity_asc", "release_date_desc", "release_date_asc", "title_desc", "title_asc"]
+    values: [
+      { key: "relevance_desc", name: "Relevance Desc" },
+      { key: "relevance_asc", name: "Relevance Asc" },
+      { key: "popularity_desc", name: "Popularity Desc" },
+      { key: "popularity_asc", name: "Popularity Asc" },
+      { key: "release_date_desc", name: "Release Date Desc" },
+      { key: "release_date_asc", name: "Release Date Asc" },
+      { key: "title_desc", name: "Title Desc" },
+      { key: "title_asc", name: "Title Asc" }
+    ]
   },
   {
-    name: "release_date_start",
-    label: "Release Date Start",
+    key: "release_date_start",
+    name: "Release Date Start",
     type: "date",
     values: []
   },
   {
-    name: "release_date_end",
-    label: "Release Date End",
+    key: "release_date_end",
+    name: "Release Date End",
     type: "date",
     values: []
   },
   {
-    name: "user_rating_high",
-    label: "User Rating High",
+    key: "user_rating_high",
+    name: "User Rating High",
     type: "number",
     values: []
   },
   {
-    name: "user_rating_low",
-    label: "User Rating Low",
+    key: "user_rating_low",
+    name: "User Rating Low",
     type: "number",
     values: []
   },
   {
-    name: "critic_score_high",
-    label: "Critic Score High",
+    key: "critic_score_high",
+    name: "Critic Score High",
     type: "number",
     values: []
   },
   {
-    name: "critic_score_low",
-    label: "Critic Score Low",
+    key: "critic_score_low",
+    name: "Critic Score Low",
     type: "number",
     values: []
   },
   {
-    name: "limit",
-    label: "Limit",
+    key: "limit",
+    name: "Limit",
     type: "number",
     values: []
   }
