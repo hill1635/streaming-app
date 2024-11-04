@@ -4,11 +4,12 @@ import './Filters.scss';
 function Filter(props) {
   const [ filter, setFilter ] = useState({ name: '', values: []});
   const [ selected, setSelected ] = useState([]);
+  const [ expanded, setExpanded ] = useState(false);
 
   useEffect(() => {
     setFilter({...props.filter});
   }, [props]);
-  
+
   const addOption = (option) => {
     var newArray = selected;
     newArray.push(option);
@@ -30,21 +31,23 @@ function Filter(props) {
 
   return (
     <div>
-      <span>{filter.name}</span>
-        <ul>
-          {filter.values.map((value) => {
-            return (
-              <li>
-                <input 
-                  type="checkbox" 
-                  checked={selected.includes(value)} 
-                  onChange={(e) => toggleSelected(e, value)}
-                />
-                {value}
-              </li>
-            );
-          })}
-        </ul>
+      <span onClick={() => setExpanded(!expanded)}>{filter.name}</span>
+        {expanded &&
+          <ul>
+            {filter.values.map((value) => {
+              return (
+                <li>
+                  <input 
+                    type="checkbox" 
+                    checked={selected.includes(value)} 
+                    onChange={(e) => toggleSelected(e, value)}
+                  />
+                  {value}
+                </li>
+              );
+            })}
+          </ul>
+        }
     </div>
   );
 }
