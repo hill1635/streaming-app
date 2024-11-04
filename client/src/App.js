@@ -8,7 +8,7 @@ import Setup from './pages/setup/Setup';
 import Account from './pages/account/Account';
 import About from './pages/about/About';
 import Footer from './footer/Footer';
-import { UserProvider } from "./UserContext";
+import { UserProvider } from "./context/UserContext";
 
 import './App.scss';
 import './components/buttons/Buttons.scss';

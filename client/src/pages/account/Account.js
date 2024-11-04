@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext, useRef } from 'react';
-import { UserContext } from '../../UserContext';
+import { UserContext } from '../../context/UserContext';
 import EditBtn from '../../components/buttons/Edit';
 import SaveBtn from '../../components/buttons/Save';
 import CancelBtn from '../../components/buttons/Cancel';
