@@ -1,30 +1,16 @@
-import React, { useEffect, useState, useContext, useRef } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
+import { StreamContext } from '../../context/StreamContext';
 import EditBtn from '../../components/buttons/Edit';
 import SaveBtn from '../../components/buttons/Save';
 import CancelBtn from '../../components/buttons/Cancel';
-import StreamAPI from '../../utils/StreamAPI';
 import './Account.scss';
 
 function Account() {
 	const [ edit, setEdit ] = useState(false);
 	const { user, setUser } = useContext(UserContext);
+	const { sources, genres } = useContext(StreamContext);
 	const [ userDraft, setUserDraft ] = useState({...user});
-	const servicesRef = useRef([]);
-	const genresRef = useRef([]);
-
-  useEffect(() => {
-    StreamAPI.getSources().then((res) => {
-			console.log("sources:", res.data);
-      servicesRef.current = res.data;
-    });
-
-    StreamAPI.getGenres().then((res) => {
-			console.log("Fetching genres");
-			console.log("genres:", res.data);
-      genresRef.current = res.data;
-    });
-  }, []);
 
 	useEffect(() => {
 		setUserDraft({...user});
@@ -72,8 +58,8 @@ function Account() {
 					<p>{user.email}</p>
 			</div>
 			<h3>Services:</h3>
-			{edit && servicesRef.current.length > 0 &&
-				servicesRef.current.map((service) => {
+			{edit && sources.length > 0 &&
+				sources.map((service) => {
 				return (
 					<div className="serviceProvider" key={service.id}>
 						<input type="checkbox" checked={userDraft.services.includes(service)} onChange={(e) => toggleOption(e, service, "services")} />
@@ -92,8 +78,8 @@ function Account() {
 				);
 			})}
 			<h3>Genres:</h3>
-			{edit && genresRef.current.length > 0 &&
-				genresRef.current.map((genre) => {
+			{edit && genres.length > 0 &&
+				genres.map((genre) => {
 				return (
 					<div key={genre.id}>
 						<input type="checkbox" checked={userDraft.genres.includes(genre)} onChange={(e) => toggleOption(e, genre, "genres")}/>
