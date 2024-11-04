@@ -36,13 +36,13 @@ function Filter(props) {
           <ul>
             {filter.values.map((value) => {
               return (
-                <li>
+                <li key={value.key}>
                   <input 
                     type="checkbox" 
                     checked={selected.includes(value)} 
                     onChange={(e) => toggleSelected(e, value)}
                   />
-                  {value}
+                  {value.name}
                 </li>
               );
             })}
