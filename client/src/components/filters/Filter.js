@@ -6,6 +6,10 @@ function Filter(props) {
   const [ selected, setSelected ] = useState([]);
   const [ expanded, setExpanded ] = useState(false);
 
+  const toSnakeCase = (str) => {
+		return str.toLowerCase().replace(/\s+/g, '_');
+	};
+
   useEffect(() => {
     setFilter({...props.data});
   }, [props]);
@@ -36,7 +40,7 @@ function Filter(props) {
           <ul>
             {filter.values.map((value) => {
               return (
-                <li key={value.key}>
+                <li key={value.key || toSnakeCase(value.name)}>
                   <input 
                     type="checkbox" 
                     checked={selected.includes(value)} 
