@@ -16,7 +16,7 @@ export const StreamProvider = ({ children }) => {
   };
 
   const getGenres = () => {
-    StreamAPI.getSources().then((res) => {
+    StreamAPI.getGenres().then((res) => {
       setGenres(res.data);
     }).catch((err) => {
       console.error("Error fetching genres:", err);
