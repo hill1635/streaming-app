@@ -7,7 +7,7 @@ function Filter(props) {
   const [ expanded, setExpanded ] = useState(false);
 
   useEffect(() => {
-    setFilter({...props.filter});
+    setFilter({...props.data});
   }, [props]);
 
   const addOption = (option) => {
