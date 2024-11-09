@@ -64,9 +64,19 @@ function Filter(props) {
               </ul>
             }
             {filter.type === "number" &&
-              <ul>
-                <input type='number' />
-              </ul>
+              <span>
+                <input 
+                  min={filter.min.toString()} 
+                  max={filter.max.toString()}
+                  step={filter.step.toString()}
+                  type='number'
+                />
+              </span>
+            }
+            {filter.type === "date" &&
+              <span>
+                <input type='date' />
+              </span>
             }
           </span>
         )}
