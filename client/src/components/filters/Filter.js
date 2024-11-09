@@ -3,7 +3,7 @@ import './Filters.scss';
 
 function Filter(props) {
   const [ filter, setFilter ] = useState({ name: '', values: []});
-  const [ selected, setSelected ] = useState([]);
+  const [ selected, setSelected ] = useState();
   const [ expanded, setExpanded ] = useState(false);
 
   const toSnakeCase = (str) => {
@@ -14,8 +14,14 @@ function Filter(props) {
     setFilter({...props.data});
   }, [props]);
 
+  useEffect(() => {
+    if (selected) {
+      props.setSelected({...props.selected, [filter.key]: selected});
+    }
+  }, [selected]);
+
   const addOption = (option) => {
-    var newArray = selected;
+    var newArray = selected || [];
     newArray.push(option);
     setSelected([...newArray]);
   };
@@ -45,7 +51,7 @@ function Filter(props) {
                   <li key={value.key || toSnakeCase(value.name)}>
                     <input 
                       type="checkbox" 
-                      checked={selected.includes(value)} 
+                      checked={selected?.includes(value)} 
                       onChange={(e) => toggleSelected(e, value)}
                     />
                     {value.name}
@@ -58,7 +64,7 @@ function Filter(props) {
               <ul>
                 {filter.values.map((value) => {
                   return (
-                    <li key={value.key || toSnakeCase(value.name)}>{value.name}</li>
+                    <li onClick={() => setSelected(value.key)} key={value.key || toSnakeCase(value.name)}>{value.name}</li>
                   );
                 })}
               </ul>
@@ -69,13 +75,14 @@ function Filter(props) {
                   min={filter.min.toString()} 
                   max={filter.max.toString()}
                   step={filter.step.toString()}
+                  onChange={(e) => setSelected(e.target.value)}
                   type='number'
                 />
               </span>
             }
             {filter.type === "date" &&
               <span>
-                <input type='date' />
+                <input onChange={(e) => setSelected(e.target.value.replace(/-/g, ""))} type='date' />
               </span>
             }
           </span>
