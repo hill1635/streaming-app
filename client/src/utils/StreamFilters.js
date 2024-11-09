@@ -60,42 +60,50 @@ export const streamFilters = [
     key: "release_date_start",
     name: "Release Date Start",
     type: "date",
-    values: []
   },
   {
     key: "release_date_end",
     name: "Release Date End",
     type: "date",
-    values: []
   },
   {
     key: "user_rating_high",
     name: "User Rating High",
     type: "number",
-    values: []
+    min: 0,
+    max: 10,
+    step: 1
   },
   {
     key: "user_rating_low",
     name: "User Rating Low",
     type: "number",
-    values: []
+    min: 0,
+    max: 10,
+    step: 1
   },
   {
     key: "critic_score_high",
     name: "Critic Score High",
     type: "number",
-    values: []
+    min: 0,
+    max: 100,
+    step: 5
   },
   {
     key: "critic_score_low",
     name: "Critic Score Low",
     type: "number",
-    values: []
+    min: 0,
+    max: 100,
+    step: 5
   },
   {
     key: "limit",
     name: "Limit",
     type: "number",
-    values: []
+    min: 0,
+    max: 100,
+    step: 5
   }
 ];
