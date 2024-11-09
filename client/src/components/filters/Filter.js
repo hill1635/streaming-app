@@ -36,8 +36,9 @@ function Filter(props) {
   return (
     <div>
       <span onClick={() => setExpanded(!expanded)}>{filter.name}</span>
-        {expanded &&
-          filter.type === "multi_select" &&
+        {expanded && (
+          <span>
+          {filter.type === "multi_select" &&
             <ul>
               {filter.values.map((value) => {
                 return (
@@ -52,7 +53,18 @@ function Filter(props) {
                 );
               })}
             </ul>
-        }
+            },
+            {filter.type === "select" &&
+            <ul>
+              {filter.values.map((value) => {
+                return (
+                  <li key={value.key || toSnakeCase(value.name)}>{value.name}</li>
+                );
+              })}
+            </ul>
+            }
+          </span>
+        )}
     </div>
   );
 }
