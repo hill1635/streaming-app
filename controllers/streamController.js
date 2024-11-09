@@ -1,4 +1,5 @@
 const { default: axios } = require("axios");
+var qs = require('qs');
 
 module.exports = {
   getSources: function (req, res) {
@@ -22,16 +23,10 @@ module.exports = {
       });
   },
   getTitles: function (req, res) {
-    let params = "";
-    if (req.query.services) {
-      params += "&source_id=" + req.query.services;
-    }
-    if (req.query.genres) {
-      params += "&genres=" + req.query.genres;
-    }
-    axios.get('https://api.watchmode.com/v1/list-titles/?apiKey=' + process.env.REACT_APP_WATCHMODE_API_KEY + params)
+    const paramsUrl = qs.stringify(req.query, { arrayFormat: 'comma' });
+    axios.get('https://api.watchmode.com/v1/list-titles/?apiKey=' + process.env.REACT_APP_WATCHMODE_API_KEY + "&" + paramsUrl)
       .then((response) => {
-        res.json(response.data);
+        res.json(response.data.titles);
       })
       .catch((err) => {
         console.error('Error getting titles:', err);
