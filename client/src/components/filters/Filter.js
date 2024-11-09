@@ -53,15 +53,20 @@ function Filter(props) {
                 );
               })}
             </ul>
-            },
+            }
             {filter.type === "select" &&
-            <ul>
-              {filter.values.map((value) => {
-                return (
-                  <li key={value.key || toSnakeCase(value.name)}>{value.name}</li>
-                );
-              })}
-            </ul>
+              <ul>
+                {filter.values.map((value) => {
+                  return (
+                    <li key={value.key || toSnakeCase(value.name)}>{value.name}</li>
+                  );
+                })}
+              </ul>
+            }
+            {filter.type === "number" &&
+              <ul>
+                <input type='number' />
+              </ul>
             }
           </span>
         )}
