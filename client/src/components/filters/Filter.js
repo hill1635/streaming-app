@@ -22,12 +22,12 @@ function Filter(props) {
 
   const addOption = (option) => {
     var newArray = selected || [];
-    newArray.push(option);
+    newArray.push(option.key || option.id);
     setSelected([...newArray]);
   };
 
   const removeOption = (option) => {
-    var newArray = selected.filter((item) => item !== option);
+    var newArray = selected.filter((item) => item !== option.key && item !== option.id);
     setSelected([...newArray]);
   };
 
@@ -51,7 +51,7 @@ function Filter(props) {
                   <li key={value.key || toSnakeCase(value.name)}>
                     <input 
                       type="checkbox" 
-                      checked={selected?.includes(value)} 
+                      checked={selected?.includes(value.key) || selected?.includes(value.id)} 
                       onChange={(e) => toggleSelected(e, value)}
                     />
                     {value.name}
