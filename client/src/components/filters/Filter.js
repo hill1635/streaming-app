@@ -37,20 +37,21 @@ function Filter(props) {
     <div>
       <span onClick={() => setExpanded(!expanded)}>{filter.name}</span>
         {expanded &&
-          <ul>
-            {filter.values.map((value) => {
-              return (
-                <li key={value.key || toSnakeCase(value.name)}>
-                  <input 
-                    type="checkbox" 
-                    checked={selected.includes(value)} 
-                    onChange={(e) => toggleSelected(e, value)}
-                  />
-                  {value.name}
-                </li>
-              );
-            })}
-          </ul>
+          filter.type === "multi_select" &&
+            <ul>
+              {filter.values.map((value) => {
+                return (
+                  <li key={value.key || toSnakeCase(value.name)}>
+                    <input 
+                      type="checkbox" 
+                      checked={selected.includes(value)} 
+                      onChange={(e) => toggleSelected(e, value)}
+                    />
+                    {value.name}
+                  </li>
+                );
+              })}
+            </ul>
         }
     </div>
   );
