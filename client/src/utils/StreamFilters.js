@@ -105,5 +105,13 @@ export const streamFilters = [
     min: 0,
     max: 100,
     step: 5
+  },
+  {
+    key: "display",
+    name: "Display",
+    type: "number",
+    min: 0,
+    max: 10,
+    step: 1
   }
 ];
