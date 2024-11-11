@@ -10,18 +10,24 @@ function Filters(props) {
     setFilters(props.data);
   }, [ props.data ]);
 
+  useEffect(() => {
+    props.setDisplay(selected.display);
+  }, [selected.display]);
+
   const applyFilters = async (input) => {
     var resData = await props.getData(input);
     props.setData(resData);
   };
 
   return (
-    <div>
-      {filters.map((filter) => {
-        return (
-          <Filter data={filter} setSelected={setSelected} selected={selected} />
-        );
-      })}
+    <div className="filter">
+      <div className="filtersWrapper">
+        {filters.map((filter) => {
+          return (
+            <Filter data={filter} setSelected={setSelected} selected={selected} />
+          );
+        })}
+      </div>
       <button onClick={() => applyFilters(selected)}>Apply</button>
     </div>
   );
