@@ -1,2 +1,41 @@
 @import "../../styles/variables.scss";
 @import "../../styles/mixins.scss";
+
+.carouselItem {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex: 1 1 auto;
+  justify-content: start;
+}
+
+.itemDetails {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  justify-content: start;
+  text-align: left;
+  padding: 1em;
+}
+
+.itemImg {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.itemImg img {
+  width: auto;
+  max-width: 100px;
+  height: auto;
+}
+
+.itemTitle, .itemDate, .itemDescription {
+  display: flex;
+  flex: 1 1 100%;
+  flex-wrap: nowrap;
+}
+
+.itemBtn {
+  max-width: 100px;
+}
