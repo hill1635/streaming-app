@@ -40,15 +40,15 @@ function Filter(props) {
   };
 
   return (
-    <div>
-      <span onClick={() => setExpanded(!expanded)}>{filter.name}</span>
+    <div className="filterWrapper">
+      <span className="filterName" onClick={() => setExpanded(!expanded)}>{filter.name}</span>
         {expanded && (
-          <span>
+          <span className="filterOptions">
           {filter.type === "multi_select" &&
-            <ul>
+            <ul className="optionsList">
               {filter.values.map((value) => {
                 return (
-                  <li key={value.key || toSnakeCase(value.name)}>
+                  <li className="filterOption" key={value.key || toSnakeCase(value.name)}>
                     <input 
                       type="checkbox" 
                       checked={selected?.includes(value.key) || selected?.includes(value.id)} 
