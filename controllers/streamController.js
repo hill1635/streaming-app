@@ -22,6 +22,38 @@ module.exports = {
         res.status(500).json({ error: 'An error occurred while retrieving the genres' });
       });
   },
+  getTitle: function (req, res) {
+    const options = {
+      method: 'GET',
+      url: 'https://api.themoviedb.org/3/find/' + req.params.id,
+      params: {external_source: 'imdb_id'},
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer ' + process.env.REACT_APP_TMDB_READ_ACCESS_TOKEN
+      }
+    };
+    
+    axios
+      .request(options)
+      .then((response) => {
+        const result = Object.values(response.data).flat();
+        const title = result[0];
+        console.log('title:', title);
+        const titleObject = {
+          id : title.id,
+          title : title.name,
+          description : title.overview,
+          date: (title.release_date || title.first_air_date).split('-')[0],
+          genres: title.genre_ids,
+          imgSrc: "https://image.tmdb.org/t/p/original" + title.poster_path,
+        };
+        res.json(titleObject);
+      })
+      .catch((err) => {
+        console.error('Error getting title:', err);
+        res.status(500).json({ error: 'An error occurred while retrieving the title' });
+      });
+  },
   getTitles: function (req, res) {
     const paramsUrl = qs.stringify(req.query, { arrayFormat: 'comma' });
     axios.get('https://api.watchmode.com/v1/list-titles/?apiKey=' + process.env.REACT_APP_WATCHMODE_API_KEY + "&" + paramsUrl)
