@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { StreamContext } from '../../context/StreamContext';
 import './Home.scss';
-import { streamFilters } from '../../utils/StreamFilters';
+import { streamSettings } from '../../utils/StreamFilters';
 import Carousel from '../../components/carousel/Carousel';
 
 function Home() {
@@ -11,7 +11,7 @@ function Home() {
 	const [ filters, setFilters ] = useState([]);
 
 	const initFilters = () => {
-		const updatedFilters = streamFilters.map(filter => {
+		const updatedFilters = streamSettings.filters.map(filter => {
 			if (filter.key === "source_ids") {
 				return { ...filter, values: sources };
 			} else if (filter.key === "genres") {
@@ -31,7 +31,7 @@ function Home() {
 			<div className="wrapper">
 				<h1>Welcome to the homepage!</h1>
 				<p>Get started here to for the first impression.</p>
-				<Carousel getDataArray={getTitles} getIndex={getTitle} getDetails={getTitleDetails} filters={filters} />
+				<Carousel getDataArray={getTitles} getIndex={getTitle} getDetails={getTitleDetails} filters={filters} display={streamSettings.display}/>
 				<button onClick={() => getTitles({...user})}>Get Titles</button>
 			</div>
 		</main>
