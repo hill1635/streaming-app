@@ -41,9 +41,9 @@ module.exports = {
         console.log('title:', title);
         const titleObject = {
           id : title.id,
-          title : title.name,
+          title : title.name || title.title,
           description : title.overview,
-          date: (title.release_date || title.first_air_date).split('-')[0],
+          date: (title.release_date || title.first_air_date)?.split('-')[0],
           genres: title.genre_ids,
           imgSrc: "https://image.tmdb.org/t/p/original" + title.poster_path,
         };
@@ -52,6 +52,16 @@ module.exports = {
       .catch((err) => {
         console.error('Error getting title:', err);
         res.status(500).json({ error: 'An error occurred while retrieving the title' });
+      });
+  },
+  getTitleDetails: function (req, res) {
+    axios.get('https://api.watchmode.com/v1/title/' + req.params.id + '/details/?apiKey=' + process.env.REACT_APP_WATCHMODE_API_KEY)
+      .then((response) => {
+        res.json(response.data);
+      })
+      .catch((err) => {
+        console.error('Error getting title details:', err);
+        res.status(500).json({ error: 'An error occurred while retrieving the title details' });
       });
   },
   getTitles: function (req, res) {
