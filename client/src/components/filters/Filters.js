@@ -10,10 +10,6 @@ function Filters(props) {
     setFilters(props.data);
   }, [ props.data ]);
 
-  useEffect(() => {
-    props.setDisplay(selected.display);
-  }, [selected.display]);
-
   const applyFilters = async (input) => {
     var resData = await props.getData(input);
     props.setData(resData);
