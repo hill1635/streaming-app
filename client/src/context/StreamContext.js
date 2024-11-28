@@ -7,9 +7,37 @@ export const StreamProvider = ({ children }) => {
   const [ sources, setSources ] = useState([]);
   const [ genres, setGenres ] = useState([]);
 
-  const getSources = () => {
+  const getNetworks = async () => {
+    const networks = await StreamAPI.getNetworks().then((res) => {
+      return res.data
+    }).catch((err) => {
+      console.error("Error fetching sources:", err);
+    });
+    return networks;
+  };
+
+  const getSources = async () => {
+    const networks = await getNetworks();
     StreamAPI.getSources().then((res) => {
-      setSources(res.data);
+      const sources = res.data.map((source) => {
+        const match = networks.find((network) => source.name.replace(" ", "") === network.name.replace(" ", ""));
+        return {
+          ...source,
+          id: match?.id,
+          sourceId: source.id
+        };
+      }).filter((source) => source.id);
+      
+      const uniqueSources = [];
+      const ids = new Set();
+      
+      for (const source of sources) {
+        if (!ids.has(source.id)) {
+          ids.add(source.id);
+          uniqueSources.push(source);
+        }
+      }
+      setSources(uniqueSources);
     }).catch((err) => {
       console.error("Error fetching sources:", err);
     });
