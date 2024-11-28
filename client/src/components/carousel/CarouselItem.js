@@ -4,15 +4,20 @@ import './Carousel.scss';
 function CarouselItem(props) {
   const [ item, setItem ] = useState({});
 
-  const getData = useCallback(async (id) => {
-    const res = await props.getData(id);
+  const getIndex = useCallback(async (id) => {
+    const res = await props.getIndex(id);
     console.log("res:", res);
     setItem(res);
   }, [props.data]);
 
+  const getDetails = useCallback(async (id) => {
+    const res = await props.getDetails(id);
+    console.log("res:", res);
+  }, [props.data]);
+
   useEffect(() => {
     if (props.data.imdb_id) {
-      getData(props.data.imdb_id);
+      getIndex(props.data.imdb_id);
     }
   }, [props.data]);
 
@@ -25,7 +30,7 @@ function CarouselItem(props) {
         <h1 className="itemTitle">{item.title}</h1>
         <h3 className="itemDate">{item.date}</h3> 
         <p className="itemDescription">{item.description}</p>
-        <button className="itemBtn" onClick={() => getData(props.data.imdb_id)}>More</button>
+        <button className="itemBtn" onClick={() => getDetails(props.data.imdb_id)}>More</button>
       </div>
     </span>
   );
