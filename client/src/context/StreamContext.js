@@ -45,13 +45,24 @@ export const StreamProvider = ({ children }) => {
     return title;
   };
 
+  const getTitleDetails = async (id) => {
+    const titleDetails = await StreamAPI.getTitleDetails(id)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.error("Error fetching title details:", err);
+      });
+    return titleDetails;
+  };
+
   useEffect(() => {
     getSources();
     getGenres();
   }, []);
 
   return (
-    <StreamContext.Provider value={{ genres, sources, getTitles, getTitle }}>
+    <StreamContext.Provider value={{ genres, sources, getTitles, getTitle, getTitleDetails }}>
       {children}
     </StreamContext.Provider>
   );
