@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { get } from 'mongoose';
 
 export default {
   getSources: function() {
@@ -10,6 +9,9 @@ export default {
   },
   getTitle: function(id) {
     return axios.get('api/stream/title/' + id);
+  },
+  getTitleDetails: function(id) {
+    return axios.get('api/stream/titleDetails/' + id);
   },
   getTitles: function(params) {
     return axios.get('api/stream/titles', { params: params });
