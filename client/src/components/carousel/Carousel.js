@@ -17,7 +17,7 @@ function Carousel(props) {
       <Filters data={filters} getData={props.getDataArray} setData={setData} setDisplay={setDisplay}/>
         {data.slice(0, display).map((item) => {
         return (
-            <CarouselItem data={item} getData={props.getDataIndex} />
+            <CarouselItem data={item} getIndex={props.getIndex} getDetails={props.getDetails} />
         );
         })}
     </section>
