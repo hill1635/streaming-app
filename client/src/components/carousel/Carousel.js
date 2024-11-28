@@ -12,9 +12,13 @@ function Carousel(props) {
     setFilters(props.filters);
   }, [props.filters]);
 
+  useEffect(() => {
+    setDisplay(props.display.initial);
+  }, [props.display]);
+  
   return (
     <section>
-      <Filters data={filters} getData={props.getDataArray} setData={setData} setDisplay={setDisplay}/>
+      <Filters data={filters} getData={props.getDataArray} setData={setData}/>
         {data.slice(0, display).map((item) => {
         return (
             <CarouselItem data={item} getIndex={props.getIndex} getDetails={props.getDetails} />
