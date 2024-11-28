@@ -4,6 +4,9 @@ export default {
   getSources: function() {
     return axios.get('api/stream/sources');
   },
+  getNetworks: function() {
+    return axios.get('api/stream/networks');
+  },
   getGenres: function() {
     return axios.get('api/stream/genres');
   },
