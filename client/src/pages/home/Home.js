@@ -7,7 +7,7 @@ import Carousel from '../../components/carousel/Carousel';
 
 function Home() {
 	const { user } = useContext(UserContext);
-	const { sources, genres, getTitles, getTitle } = useContext(StreamContext);
+	const { sources, genres, getTitles, getTitle, getTitleDetails } = useContext(StreamContext);
 	const [ filters, setFilters ] = useState([]);
 
 	const initFilters = () => {
@@ -31,7 +31,7 @@ function Home() {
 			<div className="wrapper">
 				<h1>Welcome to the homepage!</h1>
 				<p>Get started here to for the first impression.</p>
-				<Carousel getDataArray={getTitles} getDataIndex={getTitle} filters={filters} />
+				<Carousel getDataArray={getTitles} getIndex={getTitle} getDetails={getTitleDetails} filters={filters} />
 				<button onClick={() => getTitles({...user})}>Get Titles</button>
 			</div>
 		</main>
