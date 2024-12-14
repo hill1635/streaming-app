@@ -1,9 +1,10 @@
 import React from 'react';
 
-function AddBtn() {
+function AddBtn(props) {
   return (
     <button
-      className="addBtn">
+      className="addBtn"
+      onClick={props.add}>
       Add
     </button>
   );

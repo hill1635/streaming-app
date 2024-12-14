@@ -1,9 +1,10 @@
 import React from 'react';
 
-function LikeBtn() {
+function LikeBtn(props) {
   return (
     <button
-      className="likeBtn">
+      className="likeBtn"
+      onClick={props.like}>
       Like
     </button>
   );

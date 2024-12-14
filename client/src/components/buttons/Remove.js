@@ -1,9 +1,10 @@
 import React from 'react';
 
-function RemoveBtn() {
+function RemoveBtn(props) {
   return (
     <button
-      className="removeBtn">
+      className="removeBtn"
+      onClick={props.remove}>
       Remove
     </button>
   );

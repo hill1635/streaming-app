@@ -1,9 +1,10 @@
 import React from 'react';
 
-function DislikeBtn() {
+function DislikeBtn(props) {
   return (
     <button
-      className="dislikeBtn">
+      className="dislikeBtn"
+      onClick={props.dislike}>
       Dislike
     </button>
   );

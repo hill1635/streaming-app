@@ -17,11 +17,20 @@ function CarouselItem(props) {
     setItem(combined);
   }, [props.data, item]);
 
+  const changeStatus = (input) => {
+    var status = input !== item.status ? input : "";
+    setItem({...item, status: status});
+  };
+
   useEffect(() => {
     if (props.data.imdb_id) {
       getIndex(props.data.imdb_id);
     }
   }, [props.data]);
+
+  useEffect(() => {
+    console.log("item:", item);
+  }, [ item ]);
 
   return (
     <span className="carouselItem">
@@ -37,10 +46,10 @@ function CarouselItem(props) {
         <p className="itemGenres">{item.genres?.join(", ")}</p>
         <p className="itemNetworks">{item.networks?.join(", ")}</p>
         <button className="itemBtn" onClick={() => getDetails(props.data.imdb_id)}>More</button>
-        <LikeBtn />
-        <DislikeBtn />
-        <AddBtn />
-        <RemoveBtn />
+        <LikeBtn like={() => changeStatus("liked")}/>
+        <DislikeBtn dislike={() => changeStatus("disliked")}/>
+        <AddBtn add={() => changeStatus("add")}/>
+        <RemoveBtn remove={() => setItem({...item, status: ""})}/>
       </div>
     </span>
   );
