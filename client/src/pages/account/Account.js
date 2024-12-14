@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { StreamContext } from '../../context/StreamContext';
-import EditBtn from '../../components/buttons/Edit';
-import SaveBtn from '../../components/buttons/Save';
-import CancelBtn from '../../components/buttons/Cancel';
+import { EditBtn, CancelBtn, SaveBtn } from '../../components/buttons';
 import './Account.scss';
 
 function Account() {

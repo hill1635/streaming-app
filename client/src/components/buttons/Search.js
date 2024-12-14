@@ -1,7 +1,7 @@
 import React from 'react';
 import API from '../../utils/UserAPI';
 
-function Search(props) {
+function SearchBtn(props) {
 	var search = (e) => {
 		e.preventDefault();
 		console.log('submit: ', props.search);
@@ -17,4 +17,4 @@ function Search(props) {
 	);
 }
 
-export default Search;
+export default SearchBtn;

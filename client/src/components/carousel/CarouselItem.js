@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback, useState } from 'react';
+import { AddBtn, RemoveBtn, LikeBtn, DislikeBtn } from '../buttons';
 
 import './Carousel.scss';
 
@@ -36,6 +37,10 @@ function CarouselItem(props) {
         <p className="itemGenres">{item.genres?.join(", ")}</p>
         <p className="itemNetworks">{item.networks?.join(", ")}</p>
         <button className="itemBtn" onClick={() => getDetails(props.data.imdb_id)}>More</button>
+        <LikeBtn />
+        <DislikeBtn />
+        <AddBtn />
+        <RemoveBtn />
       </div>
     </span>
   );
