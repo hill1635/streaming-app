@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 module.exports = {
   get: function (req, res) {
-    console.log("req.session.userId:", req.session.userId);
+    console.log("Fetching user");
     if (!req.session.userId) {
       return;
     }
@@ -18,9 +18,9 @@ module.exports = {
       });
   },
   create: function (req, res) {
+    console.log("Creating user");
     try {
         req.body.password = bcrypt.hashSync(req.body.password, 10);
-        console.log('req.body:', req.body);
         db.create(req.body)
             .then((dbModel) => res.json(dbModel))
             .catch((err) => {
@@ -33,16 +33,16 @@ module.exports = {
     }
   },
   update: function (req, res) {
-    console.log("req.session.userId:", req.session);
+    console.log("Updating user");
     db.findByIdAndUpdate({ _id: req.session.userId }, req.body)
       .then((dbModel) => res.json(dbModel))
-      .then((dbModel) => console.log('User updated:', dbModel))
       .catch((err) => {
         console.error('Error updating user:', err);
         res.status(422).json({ error: err.message || err });
       });
   },
   remove: function (req, res) {
+    console.log("Removing user");
       db.findById({ _id: req.session.userId })
           .then((dbModel) => dbModel.remove())
           .then((dbModel) => res.json(dbModel))
@@ -52,6 +52,7 @@ module.exports = {
           });
   },
 	login: function (req, res) {
+    console.log("Logging in user");
 		db
 			.find({ email: req.body.email })
 			.then((dbModel) => {
@@ -71,6 +72,7 @@ module.exports = {
 			.catch((err) => res.status(500).json(err));
 	},
 	logout: function (req, res) {
+    console.log("Logging out user");
 		if (req.session.loggedIn) {
 			req.session.destroy(() => {
 				res.status(204).end();
