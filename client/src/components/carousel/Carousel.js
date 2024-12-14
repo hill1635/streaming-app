@@ -19,11 +19,15 @@ function Carousel(props) {
   return (
     <section>
       <Filters data={filters} getData={props.getDataArray} setData={setData}/>
-        {data.slice(0, display).map((item) => {
+      {data.length > 0 && (
+        data.slice(0, display).map((item) => {
         return (
             <CarouselItem data={item} getIndex={props.getIndex} getDetails={props.getDetails} />
         );
-        })}
+        }))}
+        {data.length === 0 && 
+          <p>No results</p>
+        }
     </section>
   );
 }
