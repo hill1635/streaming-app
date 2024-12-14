@@ -48,8 +48,12 @@ function CarouselItem(props) {
         <button className="itemBtn" onClick={() => getDetails(props.data.imdb_id)}>More</button>
         <LikeBtn like={() => changeStatus("liked")}/>
         <DislikeBtn dislike={() => changeStatus("disliked")}/>
-        <AddBtn add={() => changeStatus("add")}/>
-        <RemoveBtn remove={() => setItem({...item, status: ""})}/>
+        {item.status !== "add" &&
+          <AddBtn add={() => changeStatus("add")}/>
+        }
+        {item.status === "add" &&
+          <RemoveBtn remove={() => setItem({...item, status: ""})}/>
+        }
       </div>
     </span>
   );
