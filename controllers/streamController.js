@@ -47,17 +47,15 @@ module.exports = {
       .request(options)
       .then((response) => {
         const result = Object.values(response.data).flat();
-        const title = result[0];
-        console.log('title:', title);
-        const titleObject = {
-          id : title.id,
-          title : title.name || title.title,
-          description : title.overview,
-          date: (title.release_date || title.first_air_date)?.split('-')[0],
-          genres: title.genre_ids,
-          imgSrc: "https://image.tmdb.org/t/p/original" + title.poster_path,
+        const data = result[0];
+        const title = {
+          id: data.id,
+          title: data.name || data.title,
+          description: data.overview,
+          date: (data.release_date || data.first_air_date)?.split('-')[0],
+          imgSrc: "https://image.tmdb.org/t/p/original" + data.poster_path,
         };
-        res.json(titleObject);
+        res.json(title);
       })
       .catch((err) => {
         console.error('Error getting title:', err);
@@ -67,7 +65,16 @@ module.exports = {
   getTitleDetails: function (req, res) {
     axios.get('https://api.watchmode.com/v1/title/' + req.params.id + '/details/?apiKey=' + process.env.REACT_APP_WATCHMODE_API_KEY)
       .then((response) => {
-        res.json(response.data);
+        const data = response.data;
+        const titleDetails = {
+          critic_score: data.critic_score,
+          genres: data.genre_names,
+          networks: data.network_names,
+          similar_titles: data.similar_titles,
+          type: data.type,
+          user_rating: data.user_rating,
+        };
+        res.json(titleDetails);
       })
       .catch((err) => {
         console.error('Error getting title details:', err);
