@@ -51,7 +51,7 @@ function Filter(props) {
                   <li className="filterOption" key={value.key || toSnakeCase(value.name)}>
                     <input 
                       type="checkbox" 
-                      checked={selected?.includes(value.key) || selected?.includes(value.id)} 
+                      checked={selected?.includes(value.key) || selected?.includes(value.id) || false} 
                       onChange={(e) => toggleSelected(e, value)}
                     />
                     {value.name}
