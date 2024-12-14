@@ -1,6 +1,6 @@
 import React from 'react';
 import './SignUp.scss';
-import SignupBtn from '../../components/buttons/SignUp';
+import { SignUpBtn } from '../../components/buttons';
 import API from '../../utils/UserAPI';
 
 function SignUp() {
@@ -25,7 +25,7 @@ function SignUp() {
 				type="text"
 				placeholder="Password"
 				id="passwordInput"></input>
-			<SignupBtn submit={createAccount} />
+			<SignUpBtn submit={createAccount} />
 		</main>
 	);
 }

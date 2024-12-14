@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Cancel(props) {
+function CancelBtn(props) {
 	return (
 		<button
 			className="cancelBtn"
@@ -11,4 +11,4 @@ function Cancel(props) {
 	);
 }
 
-export default Cancel;
+export default CancelBtn;

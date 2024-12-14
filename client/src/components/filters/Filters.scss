@@ -1,0 +1,42 @@
+ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 100%;
+  flex-wrap: nowrap;
+  overflow: visible;
+}
+
+.filtersWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex: 1 1 auto;
+  gap: 10px;
+  overflow: visible;
+}
+
+.filterWrapper {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 5px;
+}
+
+.filterOptions {
+  display: block;
+  position: absolute;
+  z-index: 1;
+}
+
+.optionsList {
+  text-align: left;
+}
+
+.filterOption {
+  text-wrap: nowrap;
+}

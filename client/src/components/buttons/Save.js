@@ -1,7 +1,7 @@
 import React from 'react';
 
-function Save(props) {
+function SaveBtn(props) {
 	return <button onClick={props.submit}>Save</button>;
 }
 
-export default Save;
+export default SaveBtn;

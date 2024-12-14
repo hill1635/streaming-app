@@ -1,6 +1,6 @@
 import React from 'react';
 import './Login.scss';
-import LoginBtn from '../../components/buttons/Login';
+import { LoginBtn } from '../../components/buttons';
 import API from '../../utils/UserAPI';
 
 function Login() {

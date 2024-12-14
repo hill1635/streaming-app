@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Edit(props) {
+function EditBtn(props) {
 	return (
 		<button
 			className="editBtn"
@@ -10,4 +10,4 @@ function Edit(props) {
 	);
 }
 
-export default Edit;
+export default EditBtn;
