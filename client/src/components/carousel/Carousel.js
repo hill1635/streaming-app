@@ -24,10 +24,11 @@ function Carousel(props) {
           return (
               <CarouselItem key={item.id} data={item} getIndex={props.getIndex} getDetails={props.getDetails} />
           );
-        }))}
-        {data.length === 0 && 
-          <p>No results</p>
-        }
+      }))}
+      {data.length === 0 && 
+        <p>No results</p>
+      }
+      <button onClick={() => setDisplay(display + props.display.step)}>Show More</button>
     </section>
   );
 }
