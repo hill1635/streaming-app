@@ -3,7 +3,7 @@ export const streamSettings = {
     {
       key: "types",
       name: "Types",
-      type: "select",
+      type: "multi_select",
       values: [
         { key: "movie", name: "Movie" },
         { key: "tv_series", name: "Tv Series" },
