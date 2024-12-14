@@ -5,11 +5,8 @@ export const streamSettings = {
       name: "Types",
       type: "multi_select",
       values: [
-        { key: "movie", name: "Movie" },
-        { key: "tv_series", name: "Tv Series" },
-        { key: "tv_special", name: "Tv Special" },
-        { key: "tv_miniseries", name: "Tv Miniseries" },
-        { key: "short_film", name: "Short Film" }
+        { key: "movie,short_film", name: "Movie" },
+        { key: "tv_series,tv_special,tv_miniseries", name: "Tv Series" },
       ]
     },
     {
@@ -17,11 +14,9 @@ export const streamSettings = {
       name: "Source Types",
       type: "multi_select",
       values: [
-        { key: "sub", name: "Subcription" },
+        { key: "sub,free,tve", name: "Stream" },
         { key: "rent", name: "Rent" },
         { key: "buy", name: "Buy" },
-        { key: "free", name: "Free" },
-        { key: "tve", name: "Tve" }
       ]
     },
     {
@@ -60,32 +55,16 @@ export const streamSettings = {
       type: "date",
     },
     {
-      key: "user_rating_high",
-      name: "User Rating High",
-      type: "number",
-      min: 0,
-      max: 10,
-      step: 1
-    },
-    {
       key: "user_rating_low",
-      name: "User Rating Low",
+      name: "Min. User Rating",
       type: "number",
       min: 0,
       max: 10,
       step: 1
-    },
-    {
-      key: "critic_score_high",
-      name: "Critic Score High",
-      type: "number",
-      min: 0,
-      max: 100,
-      step: 5
     },
     {
       key: "critic_score_low",
-      name: "Critic Score Low",
+      name: "Min. Critic Score",
       type: "number",
       min: 0,
       max: 100,
