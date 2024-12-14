@@ -17,10 +17,10 @@ function CarouselItem(props) {
     setItem(combined);
   }, [props.data, item]);
 
-  const changeStatus = (input) => {
+  const changeStatus = useCallback((input) => {
     var status = input !== item.status ? input : "";
     setItem({...item, status: status});
-  };
+  }, [item.status]);
 
   useEffect(() => {
     if (props.data.imdb_id) {
