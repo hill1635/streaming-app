@@ -60,33 +60,33 @@ function Account() {
 				sources.map((service) => {
 				return (
 					<div className="serviceProvider" key={service.id}>
-						<input type="checkbox" checked={userDraft.services.includes(service)} onChange={(e) => toggleOption(e, service, "services")} />
+						<input type="checkbox" checked={userDraft.services.includes(service.id)} onChange={(e) => toggleOption(e, service.id, "services")} />
 						<img src={service.logo_100px} alt={service.name} />
 						<h4>{service.name}</h4>
 					</div>
 				);
 			})}
 			{!edit && userDraft.services.length > 0 && 
-				user.services.map((service) => {
-				return (
-					<div className="service" key={service.id}>
-						<img src={service.logo_100px} alt={service.name} />
-						<h4>{service.name}</h4>
-					</div>
-				);
+				sources.filter((source) => userDraft.services.includes(source.id)).map((service) => {
+					return (
+						<div className="service" key={service.id}>
+							<img src={service.logo_100px} alt={service.name} />
+							<h4>{service.name}</h4>
+						</div>
+					);
 			})}
 			<h3>Genres:</h3>
 			{edit && genres.length > 0 &&
 				genres.map((genre) => {
 				return (
 					<div key={genre.id}>
-						<input type="checkbox" checked={userDraft.genres.includes(genre)} onChange={(e) => toggleOption(e, genre, "genres")}/>
+						<input type="checkbox" checked={userDraft.genres.includes(genre.id)} onChange={(e) => toggleOption(e, genre.id, "genres")}/>
 						<h4>{genre.name}</h4>
 					</div>
 				);
 			})}
 			{!edit && userDraft.genres.length > 0 &&
-				user.genres.map((genre) => {
+				genres.filter((genre) => userDraft.genres.includes(genre.id)).map((genre) => {
 				return (
 					<div key={genre.id}>
 						<h4>{genre.name}</h4>
