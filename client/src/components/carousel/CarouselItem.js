@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback, useState } from 'react';
+
 import './Carousel.scss';
 
 function CarouselItem(props) {
@@ -6,14 +7,14 @@ function CarouselItem(props) {
 
   const getIndex = useCallback(async (id) => {
     const res = await props.getIndex(id);
-    console.log("res:", res);
     setItem(res);
   }, [props.data]);
 
   const getDetails = useCallback(async (id) => {
     const res = await props.getDetails(id);
-    console.log("res:", res);
-  }, [props.data]);
+    const combined = {...item, ...res};
+    setItem(combined);
+  }, [props.data, item]);
 
   useEffect(() => {
     if (props.data.imdb_id) {
@@ -30,6 +31,10 @@ function CarouselItem(props) {
         <h1 className="itemTitle">{item.title}</h1>
         <h3 className="itemDate">{item.date}</h3> 
         <p className="itemDescription">{item.description}</p>
+        <p className="criticScore">{item.critic_score}</p>
+        <p className="userRating">{item.user_rating}</p>
+        <p className="itemGenres">{item.genres?.join(", ")}</p>
+        <p className="itemNetworks">{item.networks?.join(", ")}</p>
         <button className="itemBtn" onClick={() => getDetails(props.data.imdb_id)}>More</button>
       </div>
     </span>
