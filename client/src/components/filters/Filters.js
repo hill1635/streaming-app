@@ -32,6 +32,7 @@ function Filters(props) {
         {filters.map((filter) => {
           return (
             <Filter
+              key={filter.key}
               data={filter}
               setSelected={setSelected}
               selected={selected} 

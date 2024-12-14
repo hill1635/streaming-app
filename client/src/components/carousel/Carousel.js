@@ -21,9 +21,9 @@ function Carousel(props) {
       <Filters data={filters} getData={props.getDataArray} setData={setData}/>
       {data.length > 0 && (
         data.slice(0, display).map((item) => {
-        return (
-            <CarouselItem data={item} getIndex={props.getIndex} getDetails={props.getDetails} />
-        );
+          return (
+              <CarouselItem key={item.id} data={item} getIndex={props.getIndex} getDetails={props.getDetails} />
+          );
         }))}
         {data.length === 0 && 
           <p>No results</p>
