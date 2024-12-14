@@ -4,7 +4,6 @@ import './Filters.scss';
 function Filter(props) {
   const [ filter, setFilter ] = useState({ name: '', values: []});
   const [ selected, setSelected ] = useState();
-  const [ expanded, setExpanded ] = useState(false);
 
   const toSnakeCase = (str) => {
 		return str.toLowerCase().replace(/\s+/g, '_');
@@ -61,8 +60,7 @@ function Filter(props) {
               {selected?.length !== filter?.values?.length &&
                 <li className="filterOption" key="all">
                   <button 
-                    onClick={() => setSelected([...filter.values.map((value) => value.key || value.id)])}
-                  >
+                    onClick={() => setSelected([...filter.values.map((value) => value.key || value.id)])}>
                     Select all
                   </button>
                 </li>
@@ -70,8 +68,7 @@ function Filter(props) {
               {selected?.length === filter?.values?.length &&
                 <li className="filterOption" key="all">
                   <button 
-                    onClick={() => setSelected([])}
-                  >
+                    onClick={() => setSelected([])}>
                     Remove all
                   </button>
                 </li>
