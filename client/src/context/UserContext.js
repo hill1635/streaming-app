@@ -16,7 +16,6 @@ export const UserProvider = ({ children }) => {
   const getUser = () => {
     UserAPI.get()
     .then((res) => {
-      console.log("res:", res);
       const userObject = {
         id: res.data?._id || "",
         email: res.data?.email || "",
@@ -43,7 +42,6 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    console.log("user:", user);
     if (!init.current && user.email !== "") {
       userRef.current = user;
       init.current = true;
@@ -53,12 +51,11 @@ export const UserProvider = ({ children }) => {
       var data = {
         email: user.email,
         displayName: user.displayName,
-        services: JSON.stringify(user.services),
-        genres: JSON.stringify(user.genres),
+        services: JSON.stringify(user.services) || "[]",
+        genres: JSON.stringify(user.genres) || "[]",
       };
       saveUser(user.id, data);
       userRef.current = user;
-      console.log("User saved.");
     }
   }, [user]);
 
