@@ -41,8 +41,8 @@ function Filter(props) {
 
   return (
     <div className="filterWrapper">
-      <span className="filterName" onClick={() => setExpanded(!expanded)}>{filter.name}</span>
-        {expanded && (
+      <span className="filterName" onClick={() => props.toggle()}>{filter.name}</span>
+        {props.opened === filter.key && (
           <span className="filterOptions">
           {filter.type === "multi_select" &&
             <ul className="optionsList">

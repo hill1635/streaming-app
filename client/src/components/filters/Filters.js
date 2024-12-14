@@ -5,6 +5,7 @@ import './Filters.scss';
 function Filters(props) {
   const [ filters, setFilters ] = useState([]);
   const [ selected, setSelected ] = useState([]);
+  const [ opened, setOpened ] = useState("");
 
   useEffect(() => {
     setFilters(props.data);
@@ -15,12 +16,27 @@ function Filters(props) {
     props.setData(resData);
   };
 
+  const toggleFilter = (filterKey) => {
+    if (opened !== filterKey) {
+      setOpened(filterKey);
+      return true;
+    } else {
+      setOpened("");
+      return false;
+    }
+  };
+
   return (
     <div className="filter">
       <div className="filtersWrapper">
         {filters.map((filter) => {
           return (
-            <Filter data={filter} setSelected={setSelected} selected={selected} />
+            <Filter
+              data={filter}
+              setSelected={setSelected}
+              selected={selected} 
+              toggle={() => toggleFilter(filter.key)}
+              opened={opened}/>
           );
         })}
       </div>
