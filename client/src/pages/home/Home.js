@@ -32,7 +32,6 @@ function Home() {
 				<h1>Welcome to the homepage!</h1>
 				<p>Get started here to for the first impression.</p>
 				<Carousel getDataArray={getTitles} getIndex={getTitle} getDetails={getTitleDetails} filters={filters} display={streamSettings.display}/>
-				<button onClick={() => getTitles({...user})}>Get Titles</button>
 			</div>
 		</main>
 	);
