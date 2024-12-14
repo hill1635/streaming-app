@@ -58,6 +58,24 @@ function Filter(props) {
                   </li>
                 );
               })}
+              {selected?.length !== filter?.values?.length &&
+                <li className="filterOption" key="all">
+                  <button 
+                    onClick={() => setSelected([...filter.values.map((value) => value.key || value.id)])}
+                  >
+                    Select all
+                  </button>
+                </li>
+              }
+              {selected?.length === filter?.values?.length &&
+                <li className="filterOption" key="all">
+                  <button 
+                    onClick={() => setSelected([])}
+                  >
+                    Remove all
+                  </button>
+                </li>
+              }
             </ul>
             }
             {filter.type === "select" &&
