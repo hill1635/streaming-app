@@ -20,15 +20,16 @@ function Carousel(props) {
     <section>
       <Filters data={filters} getData={props.getDataArray} setData={setData}/>
       {data.length > 0 && (
-        data.slice(0, display).map((item) => {
-          return (
-              <CarouselItem key={item.id} data={item} getIndex={props.getIndex} getDetails={props.getDetails} />
-          );
-      }))}
+        <div>
+          {data.slice(0, display).map((item) => (
+            <CarouselItem key={item.id} data={item} getIndex={props.getIndex} getDetails={props.getDetails} />
+          ))}
+          <button onClick={() => setDisplay(display + props.display.step)}>Show More</button>
+        </div>
+      )}
       {data.length === 0 && 
         <p>No results</p>
       }
-      <button onClick={() => setDisplay(display + props.display.step)}>Show More</button>
     </section>
   );
 }
