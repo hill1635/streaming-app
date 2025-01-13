@@ -97,6 +97,7 @@ function Filter(props) {
                   max={filter.max.toString()}
                   step={filter.step.toString()}
                   onChange={(e) => setSelected(e.target.value)}
+                  value={selected || 0}
                   type='number'
                 />
               </span>

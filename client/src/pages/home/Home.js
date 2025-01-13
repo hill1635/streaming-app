@@ -12,7 +12,7 @@ function Home() {
 
 	const initFilters = () => {
 		const updatedFilters = streamSettings.filters.map(filter => {
-			if (filter.key === "source_ids") {
+			if (filter.key === "network_ids") {
 				return { ...filter, values: user.services ? sources.filter(source => user.services.includes(source.id)) : sources };
 			} else if (filter.key === "genres") {
 				return { ...filter, values: user.genres ? genres.filter(genre => user.genres.includes(genre.id)) : genres };

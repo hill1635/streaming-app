@@ -5,8 +5,8 @@ export const streamSettings = {
       name: "Types",
       type: "multi_select",
       values: [
-        { key: "movie,short_film", name: "Movie" },
-        { key: "tv_series,tv_special,tv_miniseries", name: "Tv Series" },
+        { key: "movie", name: "Movie" },
+        { key: "tv_series", name: "Tv Series" },
       ]
     },
     {
@@ -20,7 +20,7 @@ export const streamSettings = {
       ]
     },
     {
-      key: "source_ids",
+      key: "network_ids",
       name: "Sources",
       type: "multi_select",
       values: []

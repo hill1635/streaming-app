@@ -13,6 +13,7 @@ function Filters(props) {
 
   const applyFilters = async (input) => {
     var resData = await props.getData(input);
+    console.log("resData:", resData);
     props.setData(resData);
   };
 
