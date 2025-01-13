@@ -7,7 +7,7 @@ function Navigation() {
 	const [ loggedIn, setLoggedIn ] = useState(false);
 
 	useEffect(() => {
-		setLoggedIn(Object.keys(user).length > 0);
+		setLoggedIn(user.id !== null);
 	}, [user]);
 
 	return (

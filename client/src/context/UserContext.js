@@ -7,6 +7,7 @@ export const UserProvider = ({ children }) => {
   const init = useRef(false);
   const userRef = useRef({});
   const [user, setUser] = useState({
+    id: null,
     email: "",
     displayName: "",
     services: [],
@@ -42,6 +43,7 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    console.log("user:", user.id);
     if (!init.current && user.email !== "") {
       userRef.current = user;
       init.current = true;
