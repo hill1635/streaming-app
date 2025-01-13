@@ -39,8 +39,14 @@ function Filter(props) {
   };
 
   return (
-    <div className="filterWrapper">
-      <span className="filterName" onClick={() => props.toggle()}>{filter.name}</span>
+    <div className="filterWrapper"
+      onMouseEnter={() => props.toggle()}
+      onMouseLeave={() => props.toggle()}>
+      <span 
+        className="filterName"
+        onClick={() => props.toggle()}>
+        {filter.name}
+        </span>
         {props.opened === filter.key && (
           <span className="filterOptions">
           {filter.type === "multi_select" &&
