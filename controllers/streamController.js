@@ -82,7 +82,7 @@ module.exports = {
       });
   },
   getTitles: function (req, res) {
-    const paramsUrl = qs.stringify(req.query, { arrayFormat: 'comma' });
+    const paramsUrl = qs.stringify(req.query, { arrayFormat: 'comma', encodeValuesOnly: true });
     axios.get('https://api.watchmode.com/v1/list-titles/?apiKey=' + process.env.REACT_APP_WATCHMODE_API_KEY + "&" + paramsUrl)
       .then((response) => {
         res.json(response.data.titles);
