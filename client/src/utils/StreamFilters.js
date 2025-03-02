@@ -72,7 +72,7 @@ export const streamSettings = {
     },
   ],
   display: {
-    initial: 1,
-    step: 1
+    initial: 5,
+    step: 5
   },
 };
