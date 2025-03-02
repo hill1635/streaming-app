@@ -1,12 +1,23 @@
-printWidth: 120
-tabWidth: 1
-useTabs: true
-semi: true
-singleQuote: true
-quoteProps: as-needed
-trailingComma: none
-bracketSpacing: true
-bracketSameLine: true
-arrowParens: always
-htmlWhitespaceSensitivity: css
-singleAttributePerLine: true
+printWidth: 80 # 80 is a common standard for better readability, but can be increased for wider screens
+tabWidth: 2 # 2 spaces is a common standard for better readability
+useTabs: false # Spaces are generally preferred for consistency across different editors and environments
+semi: true # Semicolons help avoid potential pitfalls in JavaScript's automatic semicolon insertion
+singleQuote: true # Single quotes are preferred in JavaScript for consistency with JSON and to avoid escaping double quotes
+quoteProps: as-needed # Only add quotes around object properties where required
+trailingComma: es5 # Trailing commas in ES5 (objects, arrays, etc.) help with cleaner diffs and easier code manipulation
+bracketSpacing: true # Adds spaces inside object literals for better readability
+objectWrap: "preserve"
+bracketSameLine: false # Keeps closing brackets of JSX tags on a new line for better readability
+arrowParens: always # Always include parentheses around arrow function arguments for consistency and clarity
+htmlWhitespaceSensitivity: css # Respect the default CSS display property for whitespace sensitivity
+singleAttributePerLine: false # Allows multiple attributes per line in HTML for more compact code
+
+# Additional options
+endOfLine: lf # Use LF for line endings to avoid issues between different operating systems
+jsxSingleQuote: false # Use double quotes in JSX for consistency with HTML attributes
+proseWrap: preserve # Preserve existing line breaks in markdown text for better readability
+embeddedLanguageFormatting: auto # Format embedded code if Prettier can automatically identify it
+
+# Experimental
+experimentalTernaries: true
+# experimentalOperatorPosition: "start"
