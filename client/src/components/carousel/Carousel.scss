@@ -1,5 +1,5 @@
-@import "../../styles/variables.scss";
-@import "../../styles/mixins.scss";
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 
 .carouselItem {
   display: flex;
@@ -30,7 +30,9 @@
   height: auto;
 }
 
-.itemTitle, .itemDate, .itemDescription {
+.itemTitle,
+.itemDate,
+.itemDescription {
   display: flex;
   flex: 1 1 100%;
   flex-wrap: nowrap;

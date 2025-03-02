@@ -2,8 +2,8 @@
 @import '../../styles/mixins';
 
 .wrapper {
-	@include flex-column;
-	@include center-around;
+  @include flex-column;
+  @include center-around;
 }
 
 .serviceProvider {

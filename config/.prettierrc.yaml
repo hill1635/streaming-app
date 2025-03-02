@@ -6,7 +6,7 @@ singleQuote: true # Single quotes are preferred in JavaScript for consistency wi
 quoteProps: as-needed # Only add quotes around object properties where required
 trailingComma: es5 # Trailing commas in ES5 (objects, arrays, etc.) help with cleaner diffs and easier code manipulation
 bracketSpacing: true # Adds spaces inside object literals for better readability
-objectWrap: "preserve"
+objectWrap: 'preserve'
 bracketSameLine: false # Keeps closing brackets of JSX tags on a new line for better readability
 arrowParens: always # Always include parentheses around arrow function arguments for consistency and clarity
 htmlWhitespaceSensitivity: css # Respect the default CSS display property for whitespace sensitivity

@@ -8,33 +8,32 @@ export const UserProvider = ({ children }) => {
   const userRef = useRef({});
   const [user, setUser] = useState({
     id: null,
-    email: "",
-    displayName: "",
+    email: '',
+    displayName: '',
     services: [],
     genres: [],
   });
 
   const getUser = () => {
     UserAPI.get()
-    .then((res) => {
-      const userObject = {
-        id: res.data?._id || "",
-        email: res.data?.email || "",
-        displayName: res.data?.displayName || "",
-        services: res.data?.services ? JSON.parse(res.data.services) : [],
-        genres: res.data?.genres ? JSON.parse(res.data.genres) : [],
-      };
-      setUser({...userObject});
-    })
-    .catch((err) => {
-      console.error("Error fetching user data:", err);
-    });
+      .then((res) => {
+        const userObject = {
+          id: res.data?._id || '',
+          email: res.data?.email || '',
+          displayName: res.data?.displayName || '',
+          services: res.data?.services ? JSON.parse(res.data.services) : [],
+          genres: res.data?.genres ? JSON.parse(res.data.genres) : [],
+        };
+        setUser({ ...userObject });
+      })
+      .catch((err) => {
+        console.error('Error fetching user data:', err);
+      });
   };
 
   const saveUser = (id, data) => {
-    UserAPI.update(id, data)
-    .catch((err) => {
-      console.error("Error saving user data:", err);
+    UserAPI.update(id, data).catch((err) => {
+      console.error('Error saving user data:', err);
     });
   };
 
@@ -43,18 +42,18 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    console.log("user:", user.id);
-    if (!init.current && user.email !== "") {
+    console.log('user:', user.id);
+    if (!init.current && user.email !== '') {
       userRef.current = user;
       init.current = true;
     }
-    
+
     if (init.current && user !== userRef.current) {
       var data = {
         email: user.email,
         displayName: user.displayName,
-        services: JSON.stringify(user.services) || "[]",
-        genres: JSON.stringify(user.genres) || "[]",
+        services: JSON.stringify(user.services) || '[]',
+        genres: JSON.stringify(user.genres) || '[]',
       };
       saveUser(user.id, data);
       userRef.current = user;

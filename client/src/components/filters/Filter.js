@@ -2,20 +2,20 @@ import React, { useEffect, useState } from 'react';
 import './Filters.scss';
 
 function Filter(props) {
-  const [ filter, setFilter ] = useState({ name: '', values: []});
-  const [ selected, setSelected ] = useState();
+  const [filter, setFilter] = useState({ name: '', values: [] });
+  const [selected, setSelected] = useState();
 
   const toSnakeCase = (str) => {
-		return str.toLowerCase().replace(/\s+/g, '_');
-	};
+    return str.toLowerCase().replace(/\s+/g, '_');
+  };
 
   useEffect(() => {
-    setFilter({...props.data});
+    setFilter({ ...props.data });
   }, [props]);
 
   useEffect(() => {
     if (selected) {
-      props.setSelected({...props.selected, [filter.key]: selected});
+      props.setSelected({ ...props.selected, [filter.key]: selected });
     }
   }, [selected]);
 
@@ -26,7 +26,9 @@ function Filter(props) {
   };
 
   const removeOption = (option) => {
-    var newArray = selected.filter((item) => item !== option.key && item !== option.id);
+    var newArray = selected.filter(
+      (item) => item !== option.key && item !== option.id
+    );
     setSelected([...newArray]);
   };
 
@@ -39,76 +41,93 @@ function Filter(props) {
   };
 
   return (
-    <div className="filterWrapper"
+    <div
+      className="filterWrapper"
       onMouseEnter={() => props.toggle()}
-      onMouseLeave={() => props.toggle()}>
-      <span 
-        className="filterName"
-        onClick={() => props.toggle()}>
+      onMouseLeave={() => props.toggle()}
+    >
+      <span className="filterName" onClick={() => props.toggle()}>
         {filter.name}
-        </span>
-        {props.opened === filter.key && (
-          <span className="filterOptions">
-          {filter.type === "multi_select" &&
+      </span>
+      {props.opened === filter.key && (
+        <span className="filterOptions">
+          {filter.type === 'multi_select' && (
             <ul className="optionsList">
               {filter.values.map((value) => {
                 return (
-                  <li className="filterOption" key={value.key || toSnakeCase(value.name)}>
-                    <input 
-                      type="checkbox" 
-                      checked={selected?.includes(value.key) || selected?.includes(value.id) || false} 
+                  <li
+                    className="filterOption"
+                    key={value.key || toSnakeCase(value.name)}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={
+                        selected?.includes(value.key) ||
+                        selected?.includes(value.id) ||
+                        false
+                      }
                       onChange={(e) => toggleSelected(e, value)}
                     />
                     {value.name}
                   </li>
                 );
               })}
-              {selected?.length !== filter?.values?.length &&
+              {selected?.length !== filter?.values?.length && (
                 <li className="filterOption" key="all">
-                  <button 
-                    onClick={() => setSelected([...filter.values.map((value) => value.key || value.id)])}>
+                  <button
+                    onClick={() =>
+                      setSelected([
+                        ...filter.values.map((value) => value.key || value.id),
+                      ])
+                    }
+                  >
                     Select all
                   </button>
                 </li>
-              }
-              {selected?.length === filter?.values?.length &&
+              )}
+              {selected?.length === filter?.values?.length && (
                 <li className="filterOption" key="all">
-                  <button 
-                    onClick={() => setSelected([])}>
-                    Remove all
-                  </button>
+                  <button onClick={() => setSelected([])}>Remove all</button>
                 </li>
-              }
+              )}
             </ul>
-            }
-            {filter.type === "select" &&
-              <ul>
-                {filter.values.map((value) => {
-                  return (
-                    <li onClick={() => setSelected(value.key)} key={value.key || toSnakeCase(value.name)}>{value.name}</li>
-                  );
-                })}
-              </ul>
-            }
-            {filter.type === "number" &&
-              <span>
-                <input 
-                  min={filter.min.toString()} 
-                  max={filter.max.toString()}
-                  step={filter.step.toString()}
-                  onChange={(e) => setSelected(e.target.value)}
-                  value={selected || 0}
-                  type='number'
-                />
-              </span>
-            }
-            {filter.type === "date" &&
-              <span>
-                <input onChange={(e) => setSelected(e.target.value.replace(/-/g, ""))} type='date' />
-              </span>
-            }
-          </span>
-        )}
+          )}
+          {filter.type === 'select' && (
+            <ul>
+              {filter.values.map((value) => {
+                return (
+                  <li
+                    onClick={() => setSelected(value.key)}
+                    key={value.key || toSnakeCase(value.name)}
+                  >
+                    {value.name}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+          {filter.type === 'number' && (
+            <span>
+              <input
+                min={filter.min.toString()}
+                max={filter.max.toString()}
+                step={filter.step.toString()}
+                onChange={(e) => setSelected(e.target.value)}
+                value={selected || 0}
+                type="number"
+              />
+            </span>
+          )}
+          {filter.type === 'date' && (
+            <span>
+              <input
+                onChange={(e) => setSelected(e.target.value.replace(/-/g, ''))}
+                type="date"
+              />
+            </span>
+          )}
+        </span>
+      )}
     </div>
   );
 }

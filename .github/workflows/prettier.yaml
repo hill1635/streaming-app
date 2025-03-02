@@ -1,17 +1,17 @@
 name: Prettier
 
 on:
- pull_request:
-  branches:
-   - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
- prettier_job:
-  name: Prettier
-  runs-on: ubuntu-latest
-  steps:
-   - uses: actions/checkout@v2
-   - name: Install Prettier
-     run: npm install prettier
-   - name: Format Check
-     run: npx prettier . --check --config config/.prettierrc.yaml
+  prettier_job:
+    name: Prettier
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Prettier
+        run: npm install prettier
+      - name: Format Check
+        run: npx prettier . --check --config config/.prettierrc.yaml

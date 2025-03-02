@@ -3,17 +3,17 @@ import Filter from './Filter';
 import './Filters.scss';
 
 function Filters(props) {
-  const [ filters, setFilters ] = useState([]);
-  const [ selected, setSelected ] = useState([]);
-  const [ opened, setOpened ] = useState("");
+  const [filters, setFilters] = useState([]);
+  const [selected, setSelected] = useState([]);
+  const [opened, setOpened] = useState('');
 
   useEffect(() => {
     setFilters(props.data);
-  }, [ props.data ]);
+  }, [props.data]);
 
   const applyFilters = async (input) => {
     var resData = await props.getData(input);
-    console.log("resData:", resData);
+    console.log('resData:', resData);
     props.setData(resData);
   };
 
@@ -22,7 +22,7 @@ function Filters(props) {
       setOpened(filterKey);
       return true;
     } else {
-      setOpened("");
+      setOpened('');
       return false;
     }
   };
@@ -36,9 +36,10 @@ function Filters(props) {
               key={filter.key}
               data={filter}
               setSelected={setSelected}
-              selected={selected} 
+              selected={selected}
               toggle={() => toggleFilter(filter.key)}
-              opened={opened}/>
+              opened={opened}
+            />
           );
         })}
       </div>

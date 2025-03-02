@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import CarouselItem from "./CarouselItem";
-import "./Carousel.scss";
-import Filters from "../filters/Filters";
+import React, { useState, useEffect } from 'react';
+import CarouselItem from './CarouselItem';
+import './Carousel.scss';
+import Filters from '../filters/Filters';
 
 function Carousel(props) {
   const [filters, setFilters] = useState([]);
@@ -23,18 +23,23 @@ function Carousel(props) {
 
   return (
     <section>
-      <Filters data={filters} getData={props.getDataArray} setData={setData}/>
+      <Filters data={filters} getData={props.getDataArray} setData={setData} />
       {data.length > 0 && (
         <div>
           {data.slice(0, display.initial).map((item) => (
-            <CarouselItem key={item.id} data={item} getIndex={props.getIndex} getDetails={props.getDetails} />
+            <CarouselItem
+              key={item.id}
+              data={item}
+              getIndex={props.getIndex}
+              getDetails={props.getDetails}
+            />
           ))}
-          <button onClick={() => showMore(display.initial + display.step)}>Show More</button>
+          <button onClick={() => showMore(display.initial + display.step)}>
+            Show More
+          </button>
         </div>
       )}
-      {data.length === 0 && 
-        <p>No results</p>
-      }
+      {data.length === 0 && <p>No results</p>}
     </section>
   );
 }

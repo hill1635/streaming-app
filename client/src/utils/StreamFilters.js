@@ -1,78 +1,78 @@
 export const streamSettings = {
   filters: [
     {
-      key: "types",
-      name: "Types",
-      type: "multi_select",
+      key: 'types',
+      name: 'Types',
+      type: 'multi_select',
       values: [
-        { key: "movie", name: "Movie" },
-        { key: "tv_series", name: "Tv Series" },
-      ]
+        { key: 'movie', name: 'Movie' },
+        { key: 'tv_series', name: 'Tv Series' },
+      ],
     },
     {
-      key: "source_types",
-      name: "Source Types",
-      type: "multi_select",
+      key: 'source_types',
+      name: 'Source Types',
+      type: 'multi_select',
       values: [
-        { key: "sub,free,tve", name: "Stream" },
-        { key: "rent", name: "Rent" },
-        { key: "buy", name: "Buy" },
-      ]
+        { key: 'sub,free,tve', name: 'Stream' },
+        { key: 'rent', name: 'Rent' },
+        { key: 'buy', name: 'Buy' },
+      ],
     },
     {
-      key: "network_ids",
-      name: "Sources",
-      type: "multi_select",
-      values: []
+      key: 'network_ids',
+      name: 'Sources',
+      type: 'multi_select',
+      values: [],
     },
     {
-      key: "genres",
-      name: "Genres",
-      type: "multi_select",
-      values: []
+      key: 'genres',
+      name: 'Genres',
+      type: 'multi_select',
+      values: [],
     },
     {
-      key: "sort_by",
-      name: "Sort By",
-      type: "select",
+      key: 'sort_by',
+      name: 'Sort By',
+      type: 'select',
       values: [
-        { key: "relevance_desc", name: "Relevance" },
-        { key: "popularity_desc", name: "Popularity" },
-        { key: "release_date_desc", name: "Oldest" },
-        { key: "release_date_asc", name: "Newest" },
-        { key: "title_asc", name: "Title A-Z" },
-        { key: "title_desc", name: "Title Z-A" },
-      ]
+        { key: 'relevance_desc', name: 'Relevance' },
+        { key: 'popularity_desc', name: 'Popularity' },
+        { key: 'release_date_desc', name: 'Oldest' },
+        { key: 'release_date_asc', name: 'Newest' },
+        { key: 'title_asc', name: 'Title A-Z' },
+        { key: 'title_desc', name: 'Title Z-A' },
+      ],
     },
     {
-      key: "release_date_start",
-      name: "Date Start",
-      type: "date",
+      key: 'release_date_start',
+      name: 'Date Start',
+      type: 'date',
     },
     {
-      key: "release_date_end",
-      name: "Date End",
-      type: "date",
+      key: 'release_date_end',
+      name: 'Date End',
+      type: 'date',
     },
     {
-      key: "user_rating_low",
-      name: "Min. User Rating",
-      type: "number",
+      key: 'user_rating_low',
+      name: 'Min. User Rating',
+      type: 'number',
       min: 0,
       max: 10,
-      step: 1
+      step: 1,
     },
     {
-      key: "critic_score_low",
-      name: "Min. Critic Score",
-      type: "number",
+      key: 'critic_score_low',
+      name: 'Min. Critic Score',
+      type: 'number',
       min: 0,
       max: 100,
-      step: 5
+      step: 5,
     },
   ],
   display: {
     initial: 5,
-    step: 5
+    step: 5,
   },
 };

@@ -4,16 +4,13 @@ import Navigation from '../components/navigation/Navigation';
 import SearchBar from '../components/search/SearchBar';
 
 function Header() {
-	return (
-		<header>
-			<img
-				alt="Logo"
-				src="#"
-			/>
-			<SearchBar />
-			<Navigation />
-		</header>
-	);
+  return (
+    <header>
+      <img alt="Logo" src="#" />
+      <SearchBar />
+      <Navigation />
+    </header>
+  );
 }
 
 export default Header;
