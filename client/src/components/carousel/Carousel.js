@@ -13,18 +13,23 @@ function Carousel(props) {
   }, [props.filters]);
 
   useEffect(() => {
-    setDisplay(props.display.initial);
+    setDisplay(props.display);
   }, [props.display]);
-  
+
+  const showMore = (e, current, step) => {
+    e.preventDefault();
+    setDisplay({ initial: current, step });
+  };
+
   return (
     <section>
       <Filters data={filters} getData={props.getDataArray} setData={setData}/>
       {data.length > 0 && (
         <div>
-          {data.slice(0, display).map((item) => (
+          {data.slice(0, display.initial).map((item) => (
             <CarouselItem key={item.id} data={item} getIndex={props.getIndex} getDetails={props.getDetails} />
           ))}
-          <button onClick={() => setDisplay(display + props.display.step)}>Show More</button>
+          <button onClick={() => showMore(display.initial + display.step)}>Show More</button>
         </div>
       )}
       {data.length === 0 && 
