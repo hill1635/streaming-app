@@ -71,7 +71,7 @@ function Account() {
         </div>
         <div className="serviceOptions">
           {edit &&
-            sources.length > 0 &&
+            sources?.length > 0 &&
             sources.map((service) => {
               return (
                 <div className="serviceProvider" key={service.id}>
@@ -86,7 +86,7 @@ function Account() {
               );
             })}
           {!edit &&
-            userDraft.services.length > 0 &&
+            userDraft.services?.length > 0 &&
             sources
               .filter((source) => userDraft.services.includes(source.id))
               .map((service) => {
@@ -104,10 +104,11 @@ function Account() {
         </div>
         <div className="genreOptions">
           {edit &&
-            genres.length > 0 &&
+            genres?.length > 0 &&
             genres.map((genre) => {
               return (
                 <div key={genre.id}>
+                  <button className={userDraft.genres.likes.includes(genre.id) ? "selected" : "unselected"}>&#10003;</button>
                   <input
                     type="checkbox"
                     checked={userDraft.genres.likes.includes(genre.id)}
@@ -119,7 +120,7 @@ function Account() {
             })}
           <h4>Likes:</h4>
           {!edit &&
-            userDraft.genres.likes.length > 0 &&
+            userDraft.genres.likes?.length > 0 &&
             <div className="genreOptions">
               {genres
                 .filter((genre) => userDraft.genres.likes.includes(genre.id))
@@ -134,7 +135,7 @@ function Account() {
           }
           <h4>Dislikes:</h4>
           {!edit &&
-            userDraft.genres.dislikes.length > 0 &&
+            userDraft.genres.dislikes?.length > 0 &&
             <div className="genreOptions">
               {genres
                 .filter((genre) => userDraft.genres.likes.includes(genre.id))
