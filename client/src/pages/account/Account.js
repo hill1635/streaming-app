@@ -109,6 +109,7 @@ function Account() {
               return (
                 <div key={genre.id}>
                   <button className={userDraft.genres.likes.includes(genre.id) ? "selected" : "unselected"}>&#10003;</button>
+                  <button className={userDraft.genres.dislikes.includes(genre.id) ? "selected" : "unselected"}>X</button>
                   <input
                     type="checkbox"
                     checked={userDraft.genres.likes.includes(genre.id)}
