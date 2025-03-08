@@ -22,7 +22,10 @@ export const UserProvider = ({ children }) => {
           email: res.data?.email || '',
           displayName: res.data?.displayName || '',
           services: res.data?.services ? JSON.parse(res.data.services) : [],
-          genres: res.data?.genres ? JSON.parse(res.data.genres) : [],
+          genres: {
+            likes: res.data?.genres ? JSON.parse(res.data.genres) : [],
+            dislikes: [],
+          },
         };
         setUser({ ...userObject });
       })

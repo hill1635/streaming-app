@@ -12,7 +12,11 @@ function Account() {
 
   useEffect(() => {
     setUserDraft({ ...user });
+    console.log('user:', user);
   }, [user]);
+  useEffect(() => {
+    console.log('userDraft:', userDraft);
+  }, [userDraft]);
 
   const addOption = (option, property) => {
     var newUserDraft = userDraft;
@@ -106,24 +110,43 @@ function Account() {
                 <div key={genre.id}>
                   <input
                     type="checkbox"
-                    checked={userDraft.genres.includes(genre.id)}
+                    checked={userDraft.genres.likes.includes(genre.id)}
                     onChange={(e) => toggleOption(e, genre.id, 'genres')}
                   />
                   <h4>{genre.name}</h4>
                 </div>
               );
             })}
+          <h4>Likes:</h4>
           {!edit &&
-            userDraft.genres.length > 0 &&
-            genres
-              .filter((genre) => userDraft.genres.includes(genre.id))
-              .map((genre) => {
-                return (
-                  <div className="genre" key={genre.id}>
-                    <h4>{genre.name}</h4>
-                  </div>
-                );
-              })}
+            userDraft.genres.likes.length > 0 &&
+            <div className="genreOptions">
+              {genres
+                .filter((genre) => userDraft.genres.likes.includes(genre.id))
+                .map((genre) => {
+                  return (
+                    <div className="genre" key={genre.id}>
+                      <h4>{genre.name}</h4>
+                    </div>
+                  );
+                })}
+            </div>
+          }
+          <h4>Dislikes:</h4>
+          {!edit &&
+            userDraft.genres.dislikes.length > 0 &&
+            <div className="genreOptions">
+              {genres
+                .filter((genre) => userDraft.genres.likes.includes(genre.id))
+                .map((genre) => {
+                  return (
+                    <div className="genre" key={genre.id}>
+                      <h4>{genre.name}</h4>
+                    </div>
+                  );
+                })}
+            </div>
+          }
         </div>
       </section>
       {!edit && <EditBtn submit={() => setEdit(true)} />}
