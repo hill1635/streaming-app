@@ -61,60 +61,71 @@ function Account() {
         <h3>Email:</h3>
         <p>{user.email}</p>
       </div>
-      <h3>Services:</h3>
-      {edit &&
-        sources.length > 0 &&
-        sources.map((service) => {
-          return (
-            <div className="serviceProvider" key={service.id}>
-              <input
-                type="checkbox"
-                checked={userDraft.services.includes(service.id)}
-                onChange={(e) => toggleOption(e, service.id, 'services')}
-              />
-              <img src={service.logo_100px} alt={service.name} />
-              <h4>{service.name}</h4>
-            </div>
-          );
-        })}
-      {!edit &&
-        userDraft.services.length > 0 &&
-        sources
-          .filter((source) => userDraft.services.includes(source.id))
-          .map((service) => {
-            return (
-              <div className="service" key={service.id}>
-                <img src={service.logo_100px} alt={service.name} />
-                <h4>{service.name}</h4>
-              </div>
-            );
-          })}
-      <h3>Genres:</h3>
-      {edit &&
-        genres.length > 0 &&
-        genres.map((genre) => {
-          return (
-            <div key={genre.id}>
-              <input
-                type="checkbox"
-                checked={userDraft.genres.includes(genre.id)}
-                onChange={(e) => toggleOption(e, genre.id, 'genres')}
-              />
-              <h4>{genre.name}</h4>
-            </div>
-          );
-        })}
-      {!edit &&
-        userDraft.genres.length > 0 &&
-        genres
-          .filter((genre) => userDraft.genres.includes(genre.id))
-          .map((genre) => {
-            return (
-              <div key={genre.id}>
-                <h4>{genre.name}</h4>
-              </div>
-            );
-          })}
+      <section className="servicesSection">
+        <div className="servicesHeader">
+          <h3>Services:</h3>
+        </div>
+        <div className="serviceOptions">
+          {edit &&
+            sources.length > 0 &&
+            sources.map((service) => {
+              return (
+                <div className="serviceProvider" key={service.id}>
+                  <input
+                    type="checkbox"
+                    checked={userDraft.services.includes(service.id)}
+                    onChange={(e) => toggleOption(e, service.id, 'services')}
+                  />
+                  <img src={service.logo_100px} alt={service.name} />
+                  <h4>{service.name}</h4>
+                </div>
+              );
+            })}
+          {!edit &&
+            userDraft.services.length > 0 &&
+            sources
+              .filter((source) => userDraft.services.includes(source.id))
+              .map((service) => {
+                return (
+                  <div className="service" key={service.id}>
+                    <img src={service.logo_100px} alt={service.name} />
+                  </div>
+                );
+              })}
+        </div>
+      </section>
+      <section className="genresSection">
+        <div className="genresHeader">
+          <h3>Genres:</h3>
+        </div>
+        <div className="genreOptions">
+          {edit &&
+            genres.length > 0 &&
+            genres.map((genre) => {
+              return (
+                <div key={genre.id}>
+                  <input
+                    type="checkbox"
+                    checked={userDraft.genres.includes(genre.id)}
+                    onChange={(e) => toggleOption(e, genre.id, 'genres')}
+                  />
+                  <h4>{genre.name}</h4>
+                </div>
+              );
+            })}
+          {!edit &&
+            userDraft.genres.length > 0 &&
+            genres
+              .filter((genre) => userDraft.genres.includes(genre.id))
+              .map((genre) => {
+                return (
+                  <div className="genre" key={genre.id}>
+                    <h4>{genre.name}</h4>
+                  </div>
+                );
+              })}
+        </div>
+      </section>
       {!edit && <EditBtn submit={() => setEdit(true)} />}
       {edit && (
         <div>
