@@ -145,11 +145,6 @@ function Account() {
                     onClick={(e) => togglePreference('dislikes', genre.id, 'genres')}>
                     X
                   </button>
-                  <input
-                    type="checkbox"
-                    checked={userDraft.genres.likes.includes(genre.id)}
-                    onChange={(e) => toggleOption(e, genre.id, 'genres')}
-                  />
                   <h4>{genre.name}</h4>
                 </div>
               );
