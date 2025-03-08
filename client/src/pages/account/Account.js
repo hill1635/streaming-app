@@ -33,11 +33,39 @@ function Account() {
   };
 
   const toggleOption = (e, option, property) => {
+    if (property === 'genres' && e === 'like') {
+      addOption(option, property);
+      removeOption(option, property);
+      return;
+    } else if (property === 'genres' && e === 'dislike') {
+      addOption(option, property);
+      removeOption(option, property);
+      return;
+    }
+
     if (e.target.checked) {
       addOption(option, property);
+      return;
     } else {
       removeOption(option, property);
+      return;
     }
+  };
+
+  const togglePreference = (preference, value, property) => {
+    var newUserDraft = userDraft;
+    if (preference === 'likes') {
+      const newUserDraftProp = newUserDraft[property]['likes'];
+      newUserDraftProp.push(value);
+      const oldUserDraftProp = newUserDraft[property]['dislikes'];
+      newUserDraft[property]['dislikes'] = oldUserDraftProp.filter((item) => item !== value);
+    } else if (preference === 'dislikes') {
+      const newUserDraftProp = newUserDraft[property]['dislikes'];
+      newUserDraftProp.push(value);
+      const oldUserDraftProp = newUserDraft[property]['likes'];
+      newUserDraft[property]['likes'] = oldUserDraftProp.filter((item) => item !== value);
+    }
+    setUserDraft({ ...newUserDraft });
   };
 
   const saveUser = (data) => {
@@ -108,8 +136,15 @@ function Account() {
             genres.map((genre) => {
               return (
                 <div key={genre.id}>
-                  <button className={userDraft.genres.likes.includes(genre.id) ? "selected" : "unselected"}>&#10003;</button>
-                  <button className={userDraft.genres.dislikes.includes(genre.id) ? "selected" : "unselected"}>X</button>
+                  <button 
+                    className={userDraft.genres.likes.includes(genre.id) ? "selected" : "unselected"}
+                    onClick={() => togglePreference('likes', genre.id, 'genres')}>
+                    &#10003;
+                  </button>
+                  <button className={userDraft.genres.dislikes.includes(genre.id) ? "selected" : "unselected"}
+                    onClick={(e) => togglePreference('dislikes', genre.id, 'genres')}>
+                    X
+                  </button>
                   <input
                     type="checkbox"
                     checked={userDraft.genres.likes.includes(genre.id)}
